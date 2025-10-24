@@ -55,7 +55,7 @@ function Serveses() {
                             <h3 className="service-title mb-2">{service.title}</h3>
                             <h3>{service.price}</h3>
                             <p className="service-description">{service.description}</p>
-                            <button className='bg-danger shadow rounded '>Request now</button>
+                            <button className=' shadow rounded '>Request now</button>
                         </Card>
                     ))}
 
