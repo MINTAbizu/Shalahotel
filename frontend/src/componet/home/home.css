@@ -140,7 +140,12 @@
 .small-ui {
   color: var(--furniture);
 }
-
+.servieses{
+  margin-top: -120px;      /* your overlap */
+  position: relative;     
+  z-index: 5;              /* bring above hero overlays */
+  overflow: visible;       /* allow children to show */
+}
 /* responsive adjustments (keep existing media queries) */
 @media (max-width:767px){
   .hometitle, .descption { width: calc(100% - 2rem); display:block; margin:0 auto; }

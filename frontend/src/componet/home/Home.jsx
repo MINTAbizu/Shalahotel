@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Servies from '../servies/Servies';
 function Home() {
   return (
     <div>
@@ -35,12 +36,18 @@ function Home() {
                 </div>
 
                 <div className="btton">
-                    <button className="btn btn-primary btn-lg">Book Now</button>
-                    <button className='btn btn-lg '>Exploree</button>
+                    <button className=" btnss  btn-lg">Book Now</button>
+                    <button className=' btnss btn-lg explo '>Exploree our menu</button>
+                </div>
+                <div className="">
+                  <button className='btnss btn-lg '></button>
                 </div>
 
             </div>
         </div>
+          <div className="servieses">
+            <Servies/>
+          </div>
       
     </div>
   )
