@@ -1,0 +1,148 @@
+.home{
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-image: url('../../assets/hoem.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 550px;
+    color: hsl(0, 33%, 1%);
+    background-repeat: no-repeat;
+
+    /* palette variables — change these to adjust site "furniture" (UI) & text colors */
+    --text-primary: #ffffff;
+    --text-muted: rgba(255,255,255,0.85);
+    --accent: #0d6efd;          /* primary button / accent color */
+    --furniture: #6b7280;       /* UI/furniture color (muted gray) — adjust as needed */
+    --panel-bg: rgba(0,0,0,0.35);/* panel behind text */
+    --button-text: #ffffff;
+}
+.btton{
+    margin-top: 120px;
+    align-items: center;
+    justify-content: center;
+    /* margin: 30px; */
+    gap: 50px;
+    display: flex;
+
+}
+/* colored overlay (adjust rgba to change tint/strength) */
+.home::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* example: dark + blue tint — tweak colors/opacity as needed */
+    background: linear-gradient(180deg,
+                rgba(0,0,0,0.25) 0%,
+                rgba(13,110,253,0.18) 50%,
+                rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* subtle inner shadow / vignette */
+.home::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 40px 100px rgba(0,0,0,0.35);
+    z-index: 0;
+}
+
+/* keep content above overlays */
+.home > *{
+    position: relative;
+    z-index: 1;
+}
+
+/* optional: make text readable on overlay */
+.home h1,
+.home p{
+    color: #fff;
+}
+
+/* variables matching overlay colors (adjust if you change ::before) */
+.home{
+  --overlay-dark: rgba(0,0,0,0.45);
+  --overlay-tint: rgba(13,110,253,0.18);
+}
+
+/* Experimental: let browser pick best contrast color (modern browsers) */
+/* Fallback to white and then additional shadow to improve readability */
+.home h1,
+.home p {
+  color: color-contrast(var(--overlay-dark) vs white, black);
+  color: var(--text-primary); /* fallback / primary color */
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Robust: semi-transparent panel behind text to guarantee legibility */
+.hometitle,
+.descption {
+  display: inline-block;
+  background: var(--panel-bg); /* use variable */
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  backdrop-filter: blur(4px); /* optional */
+}
+
+/* specific text tweaks */
+.hometitle h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.hometitle p,
+.descption p {
+  margin: 0.4rem 0 0;
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+}
+
+/* carousel text */
+.carosel h1,
+.carosel p {
+  color: var(--text-primary);
+  text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+}
+
+/* buttons / "furniture" UI */
+.btton .btn.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--button-text);
+  transition: filter .15s ease;
+}
+
+.btton .btn,
+.btton button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text-primary);
+  padding: .5rem .9rem;
+  border-radius: .375rem;
+}
+
+.btton .btn:hover,
+.btton button:hover,
+.btton .btn.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+/* small UI/furniture elements */
+.furniture,
+.meta,
+.small-ui {
+  color: var(--furniture);
+}
+
+/* responsive adjustments (keep existing media queries) */
+@media (max-width:767px){
+  .hometitle, .descption { width: calc(100% - 2rem); display:block; margin:0 auto; }
+  .home{ height: 320px; }
+}
