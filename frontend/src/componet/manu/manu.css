@@ -1,0 +1,208 @@
+/* Palette */
+:root{
+  --accent: #0d6efd;
+  --furniture: #6b7280;
+  --card-bg: #ffffff;
+  --muted: #6c757d;
+  --shadow: rgba(2,6,23,0.08);
+}
+
+/* Container */
+.menu{
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top menu tabs */
+.topmenuheader{
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
+}
+.topmenuheader .menulist{
+  gap: 1.25rem;
+  flex-wrap: nowrap;
+  padding: .25rem;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+  padding-bottom: 0.25rem;
+}
+
+/* Each menu item */
+.topmenuheader .menulist > div{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Icon wrapper */
+.Allmenu-icon,
+.breakfast-icon,
+.lunch-icon,
+.dinner-icon,
+.fastfood-icon,
+.beverage-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(13,110,253,0.06);
+  box-shadow: 0 6px 18px var(--shadow);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* Icon hover */
+.topmenuheader .menulist > div:hover .Allmenu-icon,
+.topmenuheader .menulist > div:hover .breakfast-icon,
+.topmenuheader .menulist > div:hover .lunch-icon,
+.topmenuheader .menulist > div:hover .dinner-icon,
+.topmenuheader .menulist > div:hover .fastfood-icon,
+.topmenuheader .menulist > div:hover .beverage-icon {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(2,6,23,0.12);
+}
+
+/* Link styles */
+.topmenuheader li{
+  list-style: none;
+  margin: 0;
+}
+.topmenuheader li a{
+  color: var(--furniture);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.topmenuheader li a:hover{
+  color: var(--accent);
+}
+
+/* Product card */
+.product.card{
+  max-width: 340px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+}
+
+/* Image inside card */
+.product .card-img-top{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  /* If user passes a watch class to change image size */
+  .product .card-img-top.small{ height: 160px; }
+  .product .card-img-top.large{ height: 300px; }
+}
+
+/* Card body */
+.product .card-body{
+  padding: 1rem;
+}
+.product .card-title{
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+  color: #222;
+}
+.product .card-text{
+  margin: 0 0 .6rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* Rating */
+.rating span{
+  color: #f5b50a;
+  margin-right: 2px;
+  font-size: 0.95rem;
+}
+
+/* Button */
+.product .btn{
+  display: inline-block;
+  padding: .45rem .9rem;
+  border-radius: .45rem;
+  font-weight: 600;
+}
+.product .btn.btn-primary{
+  background: var(--accent);
+  border: none;
+}
+.product .btn.btn-primary:hover{
+  filter: brightness(.95);
+}
+
+/* Responsive: collapse top menu into wrap on small screens */
+@media (max-width: 767px){
+  .topmenuheader .menulist{
+    gap: .75rem;
+    flex-wrap: nowrap;
+  }
+  .product.card{
+    max-width: 100%;
+  }
+}
+
+/* Responsive: larger screens show multiple cards in row when used in grid */
+@media (min-width: 992px){
+  .menu{ padding: 1.5rem; }
+}
+
+/* top menu scrollable on small screens */
+.topmenuheader {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
+}
+.menulist {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  white-space: nowrap;
+  padding-bottom: 0.25rem;
+}
+
+/* hide scrollbar visually but keep scrollable (optional) */
+.topmenuheader::-webkit-scrollbar { height: 8px; }
+.topmenuheader::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; }
+
+/* menu item link */
+.menu-link {
+  text-decoration: none;
+  color: var(--furniture, #6b7280);
+  font-weight: 600;
+}
+.menu-item { padding: 0.15rem 0.35rem; border-radius: 8px; }
+
+/* ensure Manu card stretches to fill column */
+.row .d-flex > .product { width: 100%; }
+
+/* small screens: tighten paddings and image height */
+@media (max-width: 575.98px) {
+  .menulist { gap: 0.6rem; padding-left: 0.4rem; padding-right: 0.4rem; }
+  .product .card-img-top { height: 160px; }
+}
+
+/* medium screens */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .product .card-img-top { height: 200px; }
+}
+
+/* large screens */
+@media (min-width: 992px) {
+  .product .card-img-top { height: 220px; }
+}

@@ -1,6 +1,8 @@
 import React from 'react'
-
+import { useStateValue } from '../../Staateprovider/Stateprovider'
+import './Header.css'
 function Header() {
+    const [{ basket }] = useStateValue()
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
@@ -42,6 +44,7 @@ function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="#">Contact</a>
               </li>
+               <span className="cart-count nav-item">{basket.length}</span>
 
               <li className="nav-item d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
                 <button className="btn btn-outline-primary btn-sm">Login</button>

@@ -5,13 +5,13 @@ function Servies() {
     <div>
         <div className="serviescontiner">
             <div className="serviescard d-flex justify-content-center align-items-center gap-4 bg-dark color-light p-4">
-                <div className="location shadow rounded-5 p-3 text-center">
+                <div className="location shadow rounded-5 p-3 text-center ">
   <div className="location-icon mb-2">
     <i className="bi bi-geo-alt-fill fs-3 text-primary" aria-hidden="true"></i>
   </div>
   <h3>Location</h3>
-  <p>Shashmanee -01 kebale - 81 rood high way</p>
-</div>
+  <p>Shashmanee</p>
+                 </div>
 
                 <div className="working-hour shadow rounded-5 p-3 location">
                     <div className="call-icon">
