@@ -8,6 +8,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood'
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink'
 import image4 from '../../assets/hoem.jpg'
 import Manu from './Manu'
+import { Link } from 'react-router-dom'
 
 const sampleProducts = [
   { id: 1, description: 'Description 1', image: image4, price: 1231, rating: 3 },
@@ -30,27 +31,27 @@ function Menuheader() {
 
           <div className="menu-item d-flex align-items-center gap-2">
             <div className="breakfast-icon"><FreeBreakfastIcon className="text-primary" fontSize="large" /></div>
-            <a href="#" className="menu-link">Breakfast</a>
+            <Link to={'/menu/breakfast'} className="menu-link">Breakfast</Link>
           </div>
 
           <div className="menu-item d-flex align-items-center gap-2">
             <div className="lunch-icon"><LunchDiningIcon className="text-primary" fontSize="large" /></div>
-            <a href="#" className="menu-link">Lunch</a>
+            <Link to={'/menu/lunch'} className="menu-link">Lunch</Link>
           </div>
 
           <div className="menu-item d-flex align-items-center gap-2">
             <div className="dinner-icon"><DinnerDiningIcon className="text-primary" fontSize="large" /></div>
-            <a href="#" className="menu-link">Dinner</a>
+            <Link to={'/menu/dinner'} className="menu-link">Dinner</Link>
           </div>
 
           <div className="menu-item d-flex align-items-center gap-2">
             <div className="fastfood-icon"><FastfoodIcon className="text-primary" fontSize="large" /></div>
-            <a href="#" className="menu-link">Fast Food</a>
+            <Link to={'/menu/fast-food'} className="menu-link">Fast Food</Link>
           </div>
 
           <div className="menu-item d-flex align-items-center gap-2">
             <div className="beverage-icon"><LocalDrinkIcon className="text-primary" fontSize="large" /></div>
-            <a href="#" className="menu-link">Beverage</a>
+            <Link to={'/menu/beverage'} className="menu-link">Beverage</Link>
           </div>
         </div>
       </div>

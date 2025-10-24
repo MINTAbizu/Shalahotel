@@ -1,7 +1,7 @@
-
 import './App.css'
 import Header from './componet/Header/Header'
 import Home from './componet/home/Home'
+import Landingpage from './componet/Landingpage/Landingpage'
 import Manu from './componet/manu/Manu'
 
 import Menuheader from './componet/manu/Menuheader'
@@ -11,22 +11,38 @@ import DinnerMenu from './componet/Stayservi/DinnerMenu'
 import FastFoodMenu from './componet/Stayservi/FastFoodMenu'
 import LunchMenu from './componet/Stayservi/LunchMenu'
 import Serveses from './componet/Stayservi/Serveses'
-function App() {
-  
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
+function App() {
   return (
-  <div>
-     <Header/>
-     <Home/>
-     <Menuheader/>
-     <Serveses/>
-     <BreakfastMenu/>
-     <DinnerMenu/>
-     <LunchMenu/>
-     <FastFoodMenu/>
-     <BeverageMenu/>
-     
-  </div>
+    <Router>
+      <div>
+        <Header />
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Landingpage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/menu" element={<Menuheader />} />
+            <Route path="/menu/breakfast" element={<BreakfastMenu />} />
+            <Route path="/menu/lunch" element={<LunchMenu />} />
+            <Route path="/menu/dinner" element={<DinnerMenu />} />
+            <Route path="/menu/fast-food" element={<FastFoodMenu />} />
+            <Route path="/menu/beverage" element={<BeverageMenu />} />
+            <Route path="/services" element={<Serveses />} />
+
+            <Route
+              path="*"
+              element={
+                <div className="container py-5">
+                  <h2>Page not found</h2>
+                </div>
+              }
+            />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   )
 }
 
