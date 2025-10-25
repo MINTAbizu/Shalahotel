@@ -1,0 +1,62 @@
+/* Card wrapper */
+.productarea {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* title */
+.title .location-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(13,110,253,0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #0d6efd;
+  font-size: 1.2rem;
+}
+
+/* options */
+.options .option-item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+/* delivery badge */
+.delivery {
+  display: inline-block;
+  margin-left: .5rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* spacing */
+.tabelnumbers input {
+  width: 100%;
+}
+
+/* small screens adjustments */
+@media (max-width: 575.98px) {
+  .productarea { padding: 0.85rem; }
+  .title h3 { font-size: 1.05rem; }
+  .delivery { font-size: .85rem; }
+}
+
+/* medium + large screens */
+@media (min-width: 576px) {
+  .productarea { padding: 1.25rem; }
+}
+
+/* button group */
+.productarea .btn {
+  min-width: 120px;
+}
+
+/* nice focus for inputs */
+.productarea .form-control:focus {
+  box-shadow: 0 0 0 .15rem rgba(13,110,253,0.12);
+  border-color: #0d6efd;
+}

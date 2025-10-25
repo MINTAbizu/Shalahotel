@@ -14,6 +14,8 @@ import Serveses from './componet/Stayservi/Serveses'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Checkout from './componet/Chenckout/Checkout'
+import ProductAvailabelarse from './componet/productavilabel/ProductAvailabelarse'
+import Footer from './componet/Footer/Footer'
 function App() {
   return (
     <Router>
@@ -32,6 +34,7 @@ function App() {
             <Route path="/menu/beverage" element={<BeverageMenu />} />
             <Route path="/services" element={<Serveses />} />
             <Route path="/checkoutproduct" element={<Checkout />} />
+            <Route path="/checkoutproduct/ProductAvailabelarse" element={<ProductAvailabelarse />} />
 
             <Route
               path="*"
@@ -43,6 +46,7 @@ function App() {
             />
           </Routes>
         </main>
+        <Footer/>
       </div>
     </Router>
   )

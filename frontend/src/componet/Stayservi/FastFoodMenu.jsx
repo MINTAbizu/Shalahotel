@@ -23,6 +23,7 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { Link } from 'react-router-dom';
 
 const SAMPLE_ITEMS = [
   {
@@ -216,13 +217,20 @@ export default function FastFoodMenu() {
                 <Typography variant="caption" color="text.secondary">incl. taxes</Typography>
               </div>
             </Stack>
-
-            <Box sx={{ mt: 1, textAlign: 'center' }}>
-              <Button variant="contained" size="small" disabled={cartCount === 0}>Checkout</Button>
-            </Box>
+              <Box sx={{ mt: 1, textAlign: 'center' }}>
+            <Button
+              component={Link}
+              to="/checkoutproduct/ProductAvailabelarse"
+              variant="contained"
+              size="small"
+              disabled={cartCount === 0}
+            >
+              Checkout
+            </Button>
+          </Box>
           </CardContent>
         </Card>
-      </Box>
+      </Box> 
     </Box>
   );
 }

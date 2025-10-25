@@ -2,6 +2,7 @@ import React from 'react';
 import { useStateValue } from '../../Staateprovider/Stateprovider';
 // import { useStateValue } from '../Staateprovider/Stateprovider';
 import CheckoutProduct from '../Chenckout/CheckoutProduct';
+import { Link } from 'react-router-dom';
 
 function Checkout() {
     const [{ basket }] = useStateValue();
@@ -50,9 +51,13 @@ function Checkout() {
                             <span>Total:</span>
                             <span>${basket.reduce((total, item) => total + item.price, 0).toFixed(2)}</span>
                         </div>
-                        <button className="btn btn-primary checkout-button">
+                        <Link to={'ProductAvailabelarse'}>
+                         <button className="btn btn-primary checkout-button">
                             Proceed to Payment
                         </button>
+                        
+                        </Link>
+                       
                     </div>
                 </div>
             </div>
