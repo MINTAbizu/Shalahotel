@@ -14,17 +14,22 @@ function Home() {
                 </div>
                 <div className="carosel">
                       
-                    <Carousel  autoPlay={true}
+                    <Carousel 
+                     autoPlay={true}
                       infiniteLoop={true}
-                      interval={5000}        /* time each slide stays (ms) */
-                      transitionTime={600}   /* slide transition duration (ms) */
+                      interval={3500}        /* time each slide stays (ms) */
+                      transitionTime={400}   /* slide transition duration (ms) */
                       stopOnHover={true}     /* pause when mouse is over */
                       swipeable={true}
                       emulateTouch={true}
                       showThumbs={false}
                       showStatus={false}
                       showIndicators={false}
-                      showArrows={false} >
+                      showArrows={false}
+                        
+        
+                      centerMode={false}
+                       >
                           <h1>Welcome to Shala Hotel</h1>
                     <h1>Your comfort is our priority</h1>
                     </Carousel>

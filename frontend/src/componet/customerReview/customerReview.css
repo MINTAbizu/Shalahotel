@@ -1,0 +1,170 @@
+/* Carousel review card styles - responsive */
+
+.customer-review-section {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 0.75rem;
+}
+
+.review-slide {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+/* Card layout: column on small, row on md+ */
+.review-card {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 820px;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Avatar: circular, fixed size, cover */
+.review-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 80px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.08);
+}
+
+/* Body should be allowed to shrink (prevent overflow) */
+.review-body {
+  flex: 1 1 auto;
+  min-width: 0; /* important for truncation in flex items */
+  text-align: center;
+}
+
+/* Text / rating styling */
+.review-text {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.review-name {
+  color: #111827;
+  font-weight: 700;
+}
+
+.review-rating span {
+  color: #f59e0b; /* gold */
+  margin-right: 4px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Desktop: switch to horizontal layout */
+@media (min-width: 768px) {
+  .review-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+  .review-body { text-align: left; }
+}
+
+/* control dots polish */
+.carousel .control-dots { margin-top: 1rem; }
+.carousel .control-dots .dot { width: 8px; height: 8px; margin: 0 6px; background: rgba(0,0,0,0.16); }
+.carousel .control-dots .dot.selected { background: var(--bs-primary, #0d6efd); }
+
+/* Theme variables for this component */
+:root{
+  --cr-accent: #0d6efd;
+  --cr-bg-start: #f8fafc;
+  --cr-bg-end: #eef2ff;
+  --cr-card-bg: rgba(255,255,255,0.9);
+  --cr-card-border: rgba(13,110,253,0.08);
+  --cr-text: #0f172a;
+}
+
+/* Section background: soft gradient + subtle decorative radial */
+.customer-review-section {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(13,110,253,0.06), transparent 18%),
+    linear-gradient(180deg, var(--cr-bg-start), var(--cr-bg-end));
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.04);
+}
+
+/* Card: slightly translucent panel with subtle left accent and inner shadow */
+.review-card {
+  background: var(--cr-card-bg);
+  border-radius: 12px;
+  max-width: 820px;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--cr-card-border);
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left accent stripe */
+.review-card::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--cr-accent), rgba(13,110,253,0.6));
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  opacity: 0.95;
+}
+
+/* Ensure content sits above accent stripe */
+.review-card > * { position: relative; z-index: 1; }
+
+/* Avatar polish: stronger vignette */
+.review-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 80px;
+  box-shadow: 0 8px 28px rgba(2,6,23,0.12);
+  border: 3px solid rgba(255,255,255,0.85);
+}
+
+/* Text color adjustments */
+.review-text { color: var(--cr-text); }
+.review-name { color: var(--cr-text); }
+
+/* Slightly larger, colored stars */
+.review-rating span {
+  color: #f59e0b;
+  margin-right: 6px;
+  font-size: 1.05rem;
+}
+
+/* Desktop layout tweak remains */
+@media (min-width: 768px) {
+  .review-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+  }
+  .review-body { text-align: left; }
+}
+
+/* control dots contrast on this background */
+.carousel .control-dots .dot { background: rgba(15,23,42,0.12); }
+.carousel .control-dots .dot.selected { background: var(--cr-accent); }
