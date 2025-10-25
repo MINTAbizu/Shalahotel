@@ -2,6 +2,7 @@ import React from 'react'
 import Home from '../home/Home'
 import Menuheader from '../manu/Menuheader'
 import Serveses from '../Stayservi/Serveses'
+import Book from '../Book/Book'
 
 function Landingpage() {
   return (
@@ -9,6 +10,7 @@ function Landingpage() {
         <Home/>
      <Menuheader/>
      <Serveses/>
+     <Book/>
       
     </div>
   )
