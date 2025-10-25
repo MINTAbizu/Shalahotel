@@ -14,7 +14,10 @@
   padding: 2.25rem 0;
   font-size: 0.95rem;
 }
-
+.reviews:hover{
+  background-color: orange;
+  color: black;
+}
 /* columns */
 .site-footer h3,
 .site-footer h4,

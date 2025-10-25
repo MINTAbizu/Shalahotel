@@ -1,0 +1,149 @@
+.checkout-container {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.checkout-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.checkout-title h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.empty-cart-message {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.checkout-products {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.checkout-product {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.checkout-product:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.product-image {
+    text-align: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.product-details {
+    padding: 0 15px;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.product-rating .star {
+    font-size: 1.2rem;
+}
+
+.product-actions {
+    text-align: right;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.remove-button {
+    width: 100%;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.checkout-summary {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+.checkout-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: none;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    background-color: #f0c14b;
+    border: 1px solid #a88734;
+    color: #111;
+}
+
+.checkout-button:hover {
+    background-color: #ddb347;
+}
+
+@media (max-width: 768px) {
+    .checkout-product {
+        text-align: center;
+    }
+    
+    .product-actions {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .product-image img {
+        max-height: 120px;
+    }
+    
+    .checkout-summary {
+        margin-top: 30px;
+        position: static;
+    }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStateValue } from '../../Staateprovider/Stateprovider'
 import './Header.css'
+import { Link } from 'react-router-dom'
 function Header() {
     const [{ basket }] = useStateValue()
   return (
@@ -44,8 +45,15 @@ function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="#">Contact</a>
               </li>
-               <span className="cart-count nav-item">{basket.length}</span>
 
+              <Link to={'/checkoutproduct'}> 
+                             <span className="cart-count nav-item">
+                              <i className="bi bi-cart-fill"></i>
+                              <span className='basketcount'>{basket.length}</span>
+                              </span>
+
+              </Link>
+                  {/* <FaShoppingCart />  */}
               <li className="nav-item d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
                 <button className="btn btn-outline-primary btn-sm">Login</button>
                 <button className="btn btn-primary btn-sm">Sign Up</button>

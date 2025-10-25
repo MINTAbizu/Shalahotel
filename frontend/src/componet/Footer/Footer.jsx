@@ -67,15 +67,19 @@ function Footer() {
                 <a className="social-btn" href="#" aria-label="linkedin"><i className="bi bi-linkedin"></i></a>
               </div>
             </div>
+            <div className="writte-reviews pt-3">
+              <p>writte feed backs </p>
+              <button className='reviews rounded '>Write-reviews</button>
+            </div>
           </div>
 
           <div className="col-12 col-md-6 col-lg-3 footer-col">
             <h4>Opening Hours</h4>
 
-            <div className="hours-list small text-muted">
-              <div><strong>Restaurant:</strong> Mon–Fri 7:00–22:00</div>
-              <div><strong>Weekend:</strong> Sat–Sun 8:00–23:00</div>
-              <div className="mt-2"><strong>Check-in:</strong> 14:00 — <strong>Check-out:</strong> 12:00</div>
+            <div className="hours-list small ">
+              <div><strong>Restaurant:</strong> Mon–Fri 7:00–5:00</div>
+              <div><strong>Weekend:</strong> Sat–Sun 8:00–12:00</div>
+              <div className="mt-2"><strong>Check-in:</strong> 1:00 — <strong>Check-out:</strong> any-time</div>
             </div>
 
             <div className="mt-3 recognitions">
@@ -90,10 +94,10 @@ function Footer() {
         </div>
 
         <div className="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 pt-3 border-top">
-          <div className="text-muted small">&copy; {new Date().getFullYear()} Shala Hotel & Restaurant. All rights reserved.</div>
+          <div className="">&copy; {new Date().getFullYear()} Shala Hotel & Restaurant. All rights reserved.</div>
           <div className="d-flex gap-3 mt-2 mt-md-0">
-            <a href="/privacy" className="small text-muted">Privacy Policy</a>
-            <a href="/terms" className="small text-muted">Terms of Service</a>
+            <a href="/privacy" className="large ">Privacy Policy</a>
+            <a href="/terms" className="large ">Terms of Service</a>
           </div>
         </div>
       </div>

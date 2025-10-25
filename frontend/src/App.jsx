@@ -13,6 +13,7 @@ import LunchMenu from './componet/Stayservi/LunchMenu'
 import Serveses from './componet/Stayservi/Serveses'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
+import Checkout from './componet/Chenckout/Checkout'
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
             <Route path="/menu/fast-food" element={<FastFoodMenu />} />
             <Route path="/menu/beverage" element={<BeverageMenu />} />
             <Route path="/services" element={<Serveses />} />
+            <Route path="/checkoutproduct" element={<Checkout />} />
 
             <Route
               path="*"
