@@ -1,0 +1,26 @@
+:root{
+  --footer-bg: #000;          /* black background */
+  --footer-text: #d1d5db;     /* light gray text */
+  --accent: #ff7a00;          /* orange CTA */
+  --muted: #9ca3af;
+  --card-shadow: rgba(2,6,23,0.6);
+}
+
+.btn-cta {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: .375rem .65rem;
+  border-radius: .375rem;
+}
+.btn-cta:hover {
+  background: hsl(29, 41%, 46%);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-ctabook:hover {
+  background: #e66e00;
+  color: #fff;
+  text-decoration: none;
+}

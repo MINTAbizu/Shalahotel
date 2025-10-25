@@ -31,9 +31,9 @@ function Manu({ image, price, description, rating, watch, id }) {
                 <p className="card-text">{price}:00 ብር ብቻ</p>
                 <div className="rating">
                     {Array(rating).fill().map((_, i) => (
-                        <span key={i}>⭐</span>
+                        <span key={i}>★</span>
                     ))}
-                
+                {/* {Array(rating).fill().map((_, i) => <span key={i}></span>)} */}
                 </div>
                 <button className="btn btn-primary" onClick={addToBasket}>Add to Cart</button>
             </div>

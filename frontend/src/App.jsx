@@ -12,7 +12,7 @@ import FastFoodMenu from './componet/Stayservi/FastFoodMenu'
 import LunchMenu from './componet/Stayservi/LunchMenu'
 import Serveses from './componet/Stayservi/Serveses'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
+import './App.css'
 function App() {
   return (
     <Router>

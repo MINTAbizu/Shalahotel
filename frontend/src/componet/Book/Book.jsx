@@ -81,7 +81,7 @@ function Book() {
 
 
                   <div className="col-12 d-flex justify-content-center">
-                    <button type="submit" className="btn btn-primary btn-lg w-100 w-md-auto">Book Now</button>
+                    <button type="submit" className="btn-cta btn btn-warning btn-sm btn-lg w-100 w-md-auto">Book Now</button>
                   </div>
                 </form>
               </div>
@@ -101,8 +101,8 @@ function Book() {
                     <small className='rounded-2 shadow-sm'>{room.Rating}</small>
                     <p className="mb-0 text-muted">${room.price} per night</p>
                      <div className="book-btn  d-flex gap-3 p-2 ">
-                    <button className='rounded-2 shadow-sm'>Book-now</button>
-                    <button className='rounded-2 shadow-sm'>View-DEtails</button>
+                    <button className='rounded-2 shadow-sm btn-ctabook'>Book-now</button>
+                    <button className='rounded-2 shadow-sm btn-cta'>View-DEtails</button>
                   </div>
                   </div>
                  

@@ -1,0 +1,99 @@
+/* Theme variables */
+:root{
+  --footer-bg: #000;          /* black background */
+  --footer-text: #d1d5db;     /* light gray text */
+  --accent: #ff7a00;          /* orange CTA */
+  --muted: #9ca3af;
+  --card-shadow: rgba(2,6,23,0.6);
+}
+
+/* Footer base */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 2.25rem 0;
+  font-size: 0.95rem;
+}
+
+/* columns */
+.site-footer h3,
+.site-footer h4,
+.site-footer h5 { color: #fff; margin-bottom: .5rem; }
+
+/* quick links */
+.quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--footer-text);
+  text-decoration: none;
+  padding: .15rem 0;
+}
+.quick-links a:hover { color: #fff; text-decoration: underline; }
+
+/* icons */
+.icon {
+  color: var(--accent);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* social buttons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  color: var(--footer-text);
+  text-decoration: none;
+}
+.social-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+/* .site-footer{
+    height: 840px;
+} */
+/* CTA button */
+.btn-cta {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: .375rem .65rem;
+  border-radius: .375rem;
+}
+.btn-cta:hover { filter: brightness(.95); }
+
+/* newsletter form */
+.newsletter-form .form-control {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--footer-text);
+}
+.newsletter-form .form-control::placeholder { color: rgba(255,255,255,0.5); }
+
+/* awards */
+.award { padding: .45rem; border-radius: .45rem; }
+
+/* footer bottom */
+.footer-bottom {
+  border-color: rgba(255,255,255,0.06);
+  padding-top: .75rem;
+}
+.footer-bottom a { color: var(--muted); }
+
+/* responsive tweaks */
+@media (max-width: 767.98px) {
+  .site-footer { padding: 1.25rem 0; }
+  .footer-col { text-align: left; }
+  .newsletter-form { flex-direction: column; gap: .5rem; }
+  .newsletter-form .form-control { width: 100%; }
+  .newsletter-form .btn-cta { width: 100%; }
+}
+
+/* small visual polish */
+.site-footer a { transition: color .12s ease, background .12s ease; }
+.site-footer .muted-label { color: var(--muted); font-size: .85rem; }
