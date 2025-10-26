@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './book.css'
 import { Rating } from '@mui/material'
 
@@ -8,11 +8,57 @@ function Book() {
     { id: 2, name: 'Standard Room', price: 100, image: 'https://via.placeholder.com/80' },
     { id: 3, name: 'Suite', price: 250, image: 'https://via.placeholder.com/80' ,Rating:4 },
   ]
+  
+  const [checkInDate, setCheckInDate] = useState('');
+  const [checkOutDate, setCheckOutDate] = useState('');
+  const [guests, setGuests] = useState(1);
+  const [roomType, setRoomType] = useState('single');
+  const [specialRequests, setSpecialRequests] = useState('');
+  const [fullName, setFullName] = useState('');
+  // const [email, setEmail] = useState('');
+  const [phoneerror,setPhoneerror]=useState('');
+  const [fullnameerror,setFullnameerror]=useState('');
+  const [phone, setPhone] = useState('');
 
+
+const formdata={
+  checkInDate,
+  checkOutDate,
+  guests,
+  roomType,
+  specialRequests,
+  fullName,
+  // email,
+  phone
+}
   const handleSubmit = (e) => {
     e.preventDefault()
+      if(!phone){
+    setPhoneerror("Phone number is required");
+    return;
+  }
+  if(!fullName){
+    setFullnameerror("Full name is required");
+    return;
+  }
+
     // handle booking logic here
-    alert('Booking submitted (demo)')
+    try {
+      const response = fetch('http://localhost:5000/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formdata),
+      });
+      const data = response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+
+      
+    }
+    
   }
 
   return (
@@ -35,23 +81,23 @@ function Book() {
                 <form className="row g-3" onSubmit={handleSubmit}>
                   <div className="col-12 col-md-6">
                     <label htmlFor="check-in" className="form-label">Check In</label>
-                    <input type="date" id="check-in" name="check-in" className="form-control" />
+                    <input onChange={(e)=>setCheckInDate(e.target.value)} value={checkInDate} type="date" id="check-in" name="check-in" className="form-control" />
                   </div>
 
                   <div className="col-12 col-md-6">
                     <label htmlFor="check-out" className="form-label">Check Out</label>
-                    <input type="date" id="check-out" name="check-out" className="form-control" />
+                    <input  onChange={(e)=>setCheckOutDate(e.target.value)} value={checkOutDate} type="date" id="check-out" name="check-out" className="form-control" />
                   </div>
 
                   <div className="col-6 col-md-4">
                     <label htmlFor="guest" className="form-label">Guests</label>
-                    <input type="number" id="guest" name="guest" min="1" max="10" defaultValue={1} className="form-control" />
+                    <input onChange={(e)=>setGuests(e.target.value)} value={guests} type="number" id="guest" name="guest" min="1" max="10" defaultValue={1} className="form-control" />
                   </div>
 
                   <div className="col-6 col-md-8">
                     <label htmlFor="room" className="form-label">Room type</label>
-                    <select id="room" name="room" className="form-select">
-                      <option value="single">Single Room</option>
+                    <select id="room" name="room" className="form-select" onChange={(e)=>setRoomType(e.target.value)} value={roomType}>
+                      <option value="single">Single Room</option >
                       <option value="double">Double Room</option>
                       <option value="suite">Suite</option>
                     </select>
@@ -59,23 +105,25 @@ function Book() {
 
                   <div className="col-12">
                     <label htmlFor="special-requests" className="form-label">Special requests</label>
-                    <textarea id="special-requests" name="special-requests" rows="3" placeholder="Any special requests?" className="form-control" />
+                    <textarea onChange={(e)=>setSpecialRequests(e.target.value)} value={specialRequests} id="special-requests" name="special-requests" rows="3" placeholder="Any special requests?" className="form-control"  />
                   </div>
                   {/* contact information */}
                     <h2>Contact-Information</h2>
                     <div className="col-12 col-md-6">
                       
                     <label htmlFor="full-name" className="form-label">Full Name</label>
-                    <input type="text" id="full-name" name="full-name" className="form-control" required />
+                    <input  onChange={(e)=>setFullName(e.target.value)} value={fullName} type="text" id="full-name" name="full-name" className="form-control" required />
                   </div>
-                    <div className="col-12 col-md-6">
+                    {/* <div className="col-12 col-md-6">
                     <label htmlFor="email" className="form-label">Email Address</label>
                     <input type="email" id="email" name="email" className="form-control" required />
-                  </div>
+                  </div> */}
                  
                     <div className="col-12 col-md-6">
+
                     <label htmlFor="phone" className="form-label">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" className="form-control" required />
+                    
+                    <input onChange={(e)=>setPhone(e.target.value)} value={phone} type="tel" id="phone" name="phone" className="form-control" required />
                   </div>
 
 
