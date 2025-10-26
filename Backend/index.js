@@ -2,10 +2,10 @@ import express from  "express";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
-
+import userroute from './route/user/user.route.js'
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+import cors from "cors";
 
 // Middleware
 app.use(express.json());
@@ -16,10 +16,9 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('MongoDB + Node.js backend is running!');
-});
+// custom route
+app.use('/api',userroute)
+
 
 
 

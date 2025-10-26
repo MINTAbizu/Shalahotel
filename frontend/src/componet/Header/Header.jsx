@@ -11,12 +11,12 @@ function Header() {
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
               src="https://shalahotel.com/wp-content/uploads/2022/03/cropped-favicon-1-32x32.png"
-              alt="Shala Hotel logo"
+              // alt="Shala Hotel logo"
               width="32"
               height="32"
               className="me-2"
             />
-            <span className="fw-bold">Shala Hotel</span>
+            <span className="fw-bold btn btn-primary"> Shala Hotel</span>
           </a>
 
           <button
@@ -55,8 +55,9 @@ function Header() {
               </Link>
                   {/* <FaShoppingCart />  */}
               <li className="nav-item d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
-                <button className="btn btn-outline-primary btn-sm">Login</button>
-                <button className="btn btn-primary btn-sm">Sign Up</button>
+                {/* <button className="btn btn-outline-primary btn-sm">Login</button> */}
+                <Link to={'/Login'}><button className="btn btn-primary btn-sm">Login</button></Link>
+               
               </li>
             </ul>
           </div>

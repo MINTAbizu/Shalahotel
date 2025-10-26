@@ -8,7 +8,7 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Register or Login controller
-export const userController = async (req, res) => {
+ const userController = async (req, res) => {
     const { name, email, password, phone } = req.body;
 
     try {
@@ -137,3 +137,5 @@ export const changepassword=async(req,res)=>{
         res.status(500).json({message:'Server error',error});
     }
 };
+
+export default userController

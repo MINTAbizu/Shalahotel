@@ -16,6 +16,10 @@ import './App.css'
 import Checkout from './componet/Chenckout/Checkout'
 import ProductAvailabelarse from './componet/productavilabel/ProductAvailabelarse'
 import Footer from './componet/Footer/Footer'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import Users from './pages/Users'
 function App() {
   return (
     <Router>
@@ -35,6 +39,10 @@ function App() {
             <Route path="/services" element={<Serveses />} />
             <Route path="/checkoutproduct" element={<Checkout />} />
             <Route path="/checkoutproduct/ProductAvailabelarse" element={<ProductAvailabelarse />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Users" element={<Users />} />
 
             <Route
               path="*"
