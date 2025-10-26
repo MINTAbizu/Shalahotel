@@ -4,164 +4,204 @@ import { Rating } from '@mui/material'
 
 function Book() {
   const availableRooms = [
-    { id: 1, name: 'Deluxe Room', price: 150, image: 'https://via.placeholder.com/80' },
-    { id: 2, name: 'Standard Room', price: 100, image: 'https://via.placeholder.com/80' },
-    { id: 3, name: 'Suite', price: 250, image: 'https://via.placeholder.com/80' ,Rating:4 },
+    { id: 1, name: 'Deluxe Room', price: 150, image: 'https://via.placeholder.com/80', rating: 4.5 },
+    { id: 2, name: 'Standard Room', price: 100, image: 'https://via.placeholder.com/80', rating: 3.8 },
+    { id: 3, name: 'Suite', price: 250, image: 'https://via.placeholder.com/80', rating: 4.9 },
   ]
-  
-  const [checkInDate, setCheckInDate] = useState('');
-  const [checkOutDate, setCheckOutDate] = useState('');
-  const [guests, setGuests] = useState(1);
-  const [roomType, setRoomType] = useState('single');
-  const [specialRequests, setSpecialRequests] = useState('');
-  const [fullName, setFullName] = useState('');
-  // const [email, setEmail] = useState('');
-  const [phoneerror,setPhoneerror]=useState('');
-  const [fullnameerror,setFullnameerror]=useState('');
-  const [phone, setPhone] = useState('');
 
+  const [checkInDate, setCheckInDate] = useState('')
+  const [checkOutDate, setCheckOutDate] = useState('')
+  const [guests, setGuests] = useState(1)
+  const [roomtype, setRoomType] = useState('single')
+  const [specialRequests, setSpecialRequests] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [fullNameError, setFullNameError] = useState('')
+  const [message, setMessage] = useState('')
 
-const formdata={
-  checkInDate,
-  checkOutDate,
-  guests,
-  roomType,
-  specialRequests,
-  fullName,
-  // email,
-  phone
-}
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-      if(!phone){
-    setPhoneerror("Phone number is required");
-    return;
-  }
-  if(!fullName){
-    setFullnameerror("Full name is required");
-    return;
-  }
 
-    // handle booking logic here
-    try {
-      const response = fetch('http://localhost:5000/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formdata),
-      });
-      const data = response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Error:', error);
-
-      
+    // Basic validation
+    if (!fullName.trim()) {
+      setFullNameError('Full name is required')
+      return
+    } else {
+      setFullNameError('')
     }
-    
+
+    if (!phone.trim()) {
+      setPhoneError('Phone number is required')
+      return
+    } else {
+      setPhoneError('')
+    }
+
+    const formData = {
+      checkInDate,
+      checkOutDate,
+      guests,
+      roomtype,
+      specialRequests,
+      fullName,
+      phone
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+      console.log(data)
+      setMessage('Booking successful!')
+    } catch (error) {
+      console.error('Error:', error)
+      setMessage('Booking failed. Please try again.')
+    }
   }
 
   return (
-    <section className="bookcontainer container-fluid my-5  bg-light py-5 ">
+    <section className="bookcontainer container-fluid my-5 bg-light py-5">
       <div className="container">
         <h2 className="mb-2">Book your stay</h2>
         <p className="mb-4 text-muted">Comfortable rooms · Great location · Best rates</p>
 
         <div className="row g-4 align-items-start">
-
-              {/* right: reservation form */}
+          {/* RIGHT SIDE — FORM */}
           <div className="col-12 col-lg-7">
             <div className="card shadow-sm">
               <div className="card-body">
-                <div className="book-header mb-3">
-                  <h3 className="h5 mb-1">Reservation</h3>
-                  <p className="text-muted mb-0">Choose dates, guests and room type.</p>
-                </div>
+                <h3 className="h5 mb-3">Reservation</h3>
 
                 <form className="row g-3" onSubmit={handleSubmit}>
                   <div className="col-12 col-md-6">
-                    <label htmlFor="check-in" className="form-label">Check In</label>
-                    <input onChange={(e)=>setCheckInDate(e.target.value)} value={checkInDate} type="date" id="check-in" name="check-in" className="form-control" />
+                    <label className="form-label">Check In</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={checkInDate}
+                      onChange={(e) => setCheckInDate(e.target.value)}
+                    />
                   </div>
 
                   <div className="col-12 col-md-6">
-                    <label htmlFor="check-out" className="form-label">Check Out</label>
-                    <input  onChange={(e)=>setCheckOutDate(e.target.value)} value={checkOutDate} type="date" id="check-out" name="check-out" className="form-control" />
+                    <label className="form-label">Check Out</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={checkOutDate}
+                      onChange={(e) => setCheckOutDate(e.target.value)}
+                    />
                   </div>
 
                   <div className="col-6 col-md-4">
-                    <label htmlFor="guest" className="form-label">Guests</label>
-                    <input onChange={(e)=>setGuests(e.target.value)} value={guests} type="number" id="guest" name="guest" min="1" max="10" defaultValue={1} className="form-control" />
+                    <label className="form-label">Guests</label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      className="form-control"
+                      value={guests}
+                      onChange={(e) => setGuests(e.target.value)}
+                    />
                   </div>
 
                   <div className="col-6 col-md-8">
-                    <label htmlFor="room" className="form-label">Room type</label>
-                    <select id="room" name="room" className="form-select" onChange={(e)=>setRoomType(e.target.value)} value={roomType}>
-                      <option value="single">Single Room</option >
+                    <label className="form-label">Room type</label>
+                    <select
+                      className="form-select"
+                      value={roomtype}
+                      onChange={(e) => setRoomType(e.target.value)}
+                    >
+                      <option value="single">Single Room</option>
                       <option value="double">Double Room</option>
                       <option value="suite">Suite</option>
                     </select>
                   </div>
 
                   <div className="col-12">
-                    <label htmlFor="special-requests" className="form-label">Special requests</label>
-                    <textarea onChange={(e)=>setSpecialRequests(e.target.value)} value={specialRequests} id="special-requests" name="special-requests" rows="3" placeholder="Any special requests?" className="form-control"  />
-                  </div>
-                  {/* contact information */}
-                    <h2>Contact-Information</h2>
-                    <div className="col-12 col-md-6">
-                      
-                    <label htmlFor="full-name" className="form-label">Full Name</label>
-                    <input  onChange={(e)=>setFullName(e.target.value)} value={fullName} type="text" id="full-name" name="full-name" className="form-control" required />
-                  </div>
-                    {/* <div className="col-12 col-md-6">
-                    <label htmlFor="email" className="form-label">Email Address</label>
-                    <input type="email" id="email" name="email" className="form-control" required />
-                  </div> */}
-                 
-                    <div className="col-12 col-md-6">
-
-                    <label htmlFor="phone" className="form-label">Phone Number</label>
-                    
-                    <input onChange={(e)=>setPhone(e.target.value)} value={phone} type="tel" id="phone" name="phone" className="form-control" required />
+                    <label className="form-label">Special requests</label>
+                    <textarea
+                      rows="3"
+                      className="form-control"
+                      placeholder="Any special requests?"
+                      value={specialRequests}
+                      onChange={(e) => setSpecialRequests(e.target.value)}
+                    />
                   </div>
 
+                  <h4>Contact Information</h4>
 
+                  <div className="col-12 col-md-6">
+                    <label className="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                    />
+                    {fullNameError && <small className="text-danger">{fullNameError}</small>}
+                  </div>
+
+                  <div className="col-12 col-md-6">
+                    <label className="form-label">Phone Number</label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                    {phoneError && <small className="text-danger">{phoneError}</small>}
+                  </div>
 
                   <div className="col-12 d-flex justify-content-center">
-                    <button type="submit" className="btn-cta btn btn-warning btn-sm btn-lg w-100 w-md-auto">Book Now</button>
+                    <button type="submit" className="btn btn-warning w-100">
+                      Book Now
+                    </button>
                   </div>
+
+                  {message && <p className="text-center mt-2">{message}</p>}
                 </form>
               </div>
             </div>
           </div>
-          {/* left: available rooms / promo */}
+
+          {/* LEFT SIDE — ROOM LIST */}
           <div className="col-12 col-lg-5">
             <div className="book-left-side p-4 rounded-3 text-dark">
               <h3 className="mb-3">Available Rooms</h3>
-              <p className="mb-4">Explore our range of comfortable and well-equipped rooms designed to make your stay memorable.</p>
+              <p className="mb-4">Explore our range of comfortable and well-equipped rooms.</p>
 
               {availableRooms.map((room) => (
-                <div key={room.id} className="room-card mb-3 p-3 bg-white rounded-2 shadow-sm d-flex align-items-center">
-                  <img src={room.image} alt={room.name} className="room-image me-3 rounded" width="80" height="80" />
+                <div
+                  key={room.id}
+                  className="room-card mb-3 p-3 bg-white rounded-2 shadow-sm d-flex align-items-center"
+                >
+                  <img
+                    src={room.image}
+                    alt={room.name}
+                    className="room-image me-3 rounded"
+                    width="80"
+                    height="80"
+                  />
                   <div>
                     <h5 className="mb-1">{room.name}</h5>
-                    <small className='rounded-2 shadow-sm'>{room.Rating}</small>
+                    <Rating name="read-only" value={room.rating} precision={0.5} readOnly size="small" />
                     <p className="mb-0 text-muted">${room.price} per night</p>
-                     <div className="book-btn  d-flex gap-3 p-2 ">
-                    <button className='rounded-2 shadow-sm btn-ctabook'>Book-now</button>
-                    <button className='rounded-2 shadow-sm btn-cta'>View-DEtails</button>
+                    <div className="d-flex gap-2 mt-2">
+                      <button className="btn btn-sm btn-outline-warning">Book Now</button>
+                      <button className="btn btn-sm btn-outline-secondary">View Details</button>
+                    </div>
                   </div>
-                  </div>
-                 
-
                 </div>
-                
               ))}
             </div>
           </div>
 
-        
         </div>
       </div>
     </section>

@@ -3,10 +3,12 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import userroute from './route/user/user.route.js'
-const app = express();
+import booking from './route/Booking/book.route.js'
+
 const PORT = process.env.PORT || 5000;
 import cors from "cors";
 
+const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -18,6 +20,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // custom route
 app.use('/api',userroute)
+app.use('/api',booking)
 
 
 

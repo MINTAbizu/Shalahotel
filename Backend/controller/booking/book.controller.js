@@ -1,4 +1,4 @@
-import bookmodel from "../../model/Booking/book.model.js";
+import bookmodel from "../../models/Booking/book.model.js";
 
 export const bookcontroller = async (req, res) => {
     if (req.method === "POST") {
