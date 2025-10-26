@@ -4,7 +4,16 @@ dotenv.config();
 import mongoose from "mongoose";
 import userroute from './route/user/user.route.js'
 import booking from './route/Booking/book.route.js'
-
+// import menuRoutes from "./routes/menu.routes.js";
+// import ordersRoutes from "./routes/orders.routes.js";
+// import servicesRoutes from "./routes/services.routes.js";
+// import inventoryRoutes from "./routes/inventory.routes.js";
+// import expensesRoutes from "./routes/expenses.routes.js";
+// import storeRoutes from "./routes/store.routes.js";
+// import contentRoutes from "./routes/content.routes.js";
+// import customersRoutes from "./routes/customers.routes.js";
+// import reviewsRoutes from "./routes/reviews.routes.js";
+// import analysisRoutes from "./routes/analysis.routes.js";
 const PORT = process.env.PORT || 5000;
 import cors from "cors";
 
@@ -22,7 +31,16 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api',userroute)
 app.use('/api',booking)
 
-
+// app.use("/api/menu", menuRoutes);
+// app.use("/api/orders", ordersRoutes);
+// app.use("/api/services", servicesRoutes);
+// app.use("/api/inventory", inventoryRoutes);
+// app.use("/api/expenses", expensesRoutes);
+// app.use("/api/store", storeRoutes);
+// app.use("/api/content", contentRoutes);
+// app.use("/api/customers", customersRoutes);
+// app.use("/api/reviews", reviewsRoutes);
+// app.use("/api/analysis", analysisRoutes);
 
 
 // Start server
