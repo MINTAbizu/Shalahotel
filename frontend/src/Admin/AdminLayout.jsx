@@ -26,7 +26,7 @@ const menuItems = [
   { name: 'Store Management', path: '/store', icon: <FiUsers /> },
   { name: 'Analysis', path: '/analysis', icon: <FiBarChart2 /> },
   { name: 'Content Management', path: '/content', icon: <FiFileText /> },
-  { name: 'Customers', path: '/customers', icon: <FiUsers /> },
+  { name: 'Customers', path: '/customer', icon: <FiUsers /> },
   { name: 'Reviews', path: '/reviews', icon: <FiStar /> },
 ]
 

@@ -27,6 +27,7 @@ import MenuList from './componet/menu/MenuList'
 import Book from './componet/Book/Book'
 import Customer from './Admin/Customers'
 import AdminBookingTable from './Admin/AdminBookingTable'
+import Customers from './Admin/Customers'
 function App() {
   return (
     <Router>
@@ -57,7 +58,7 @@ function App() {
               <Route path="MenuManagement" element={<MenuManagement />} />
             {/* Admin */}
 
-             <Route path="Customer" element={<Customer/>} />
+             <Route path="Customer" element={<Customers/>} />
             <Route path="/menulist" element={<MenuList/>} />
             <Route path="/AdminBookingTable" element={<AdminBookingTable/>} />
 

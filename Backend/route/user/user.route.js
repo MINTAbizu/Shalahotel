@@ -8,7 +8,7 @@ route.post('/login',Login)
 route.get('/getuser',getAllUsers)
 // route.get('/getAllUsers',getAllUsers)
 route.put('/updateuser',updateuserinfo)
-route.delete('/deleteuser',delateuserinfo)
+route.delete('/deleteuser/:id',delateuserinfo)
 route.patch('/changepassword',changepassword)
 
 
