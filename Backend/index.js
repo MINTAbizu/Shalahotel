@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userroute from './route/user/user.route.js'
 import booking from './route/Booking/book.route.js'
 import menuRoutes from "./route/menu/menu.routes.js";
+import ChapaPayment from "./payment/chaparoute.js";
 // import ordersRoutes from "./routes/orders.routes.js";
 // import servicesRoutes from "./routes/services.routes.js";
 import inventoryRoutes from "./route/inventory/inventory.routes.js";
@@ -28,6 +29,7 @@ app.use('/api',userroute)
 app.use('/api',booking)
 app.use('/api/menu', menuRoutes)
 app.use('/api/menu', inventoryRoutes)
+app.use('/api', ChapaPayment)
 
 // app.use("/api/menu", menuRoutes);
 // app.use("/api/orders", ordersRoutes);

@@ -29,6 +29,7 @@ import Customer from './Admin/Customers'
 import AdminBookingTable from './Admin/AdminBookingTable'
 import Customers from './Admin/Customers'
 import ItemRegisteration from './Admin/ItemRegisteration'
+import ChapaPayment from './ChapaPayment'
 function App() {
   return (
     <Router>
@@ -63,6 +64,7 @@ function App() {
              <Route path="ItemRegisteration" element={<ItemRegisteration/>} />
             <Route path="/menulist" element={<MenuList/>} />
             <Route path="/AdminBookingTable" element={<AdminBookingTable/>} />
+            <Route path="/ChapaPayment" element={<ChapaPayment/>} />
 
             <Route
               path="*"
