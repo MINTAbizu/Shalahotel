@@ -34,7 +34,7 @@ function Header() {
           <div className="collapse navbar-collapse d-lg-flex justify-content-end" id="mainNav">
             <ul className="navbar-nav d-flex flex-column flex-lg-row gap-2 gap-lg-3 ms-lg-3 mb-2 mb-lg-0 align-items-lg-center">
               <li className="nav-item">
-                <a className="nav-link" href="#">Home</a>
+                <Link className="nav-link" to={'/'}>Home</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Rooms</a>

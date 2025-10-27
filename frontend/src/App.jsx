@@ -20,8 +20,10 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Users from './pages/Users'
-import MenuManagement from './Admin/MenuManagement'
+import Inventory from './Admin/Inventory'
 import AdminLayout from './Admin/AdminLayout'
+import MenuManagement from './Admin/MenuManagement'
+import MenuList from './componet/menu/MenuList'
 function App() {
   return (
     <Router>
@@ -45,20 +47,14 @@ function App() {
             <Route path="/Register" element={<Register />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Users" element={<Users />} />
+            <Route path="/AdminLayout" element={<AdminLayout />} />
+            {/* <Route index element={<Dashboard />} /> */}
+             <Route path="/inventory" element={<Inventory />} />
+              <Route path="MenuManagement" element={<MenuManagement />} />
             {/* Admin */}
 
-                 {/* <Route path="/" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="menu" element={<MenuManagement />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="services" element={<Services />} />
-          <Route path="inventory" element={<Inventory />} />
-          <Route path="expenses" element={<Expenses />} />
-          <Route path="store" element={<StoreManagement />} />
-          <Route path="analysis" element={<Analysis />} />
-          <Route path="content" element={<ContentManagement />} />
-          <Route path="customers" element={<Customers />} />
-          <Route path="reviews" element={<Reviews />} /> */}
+             {/* <Route path="/admin/menu" element={<MenuManagement/>} /> */}
+            <Route path="/menulist" element={<MenuList/>} />
 
             <Route
               path="*"
@@ -71,7 +67,7 @@ function App() {
           </Routes>
         </main>
         <Footer/>
-        < AdminLayout/>
+        {/* < AdminLayout/> */}
       </div>
     </Router>
   )

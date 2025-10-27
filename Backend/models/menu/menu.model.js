@@ -1,11 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const menuSchema = new mongoose.Schema({
+const MenuItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  category: { type: String, required: true }, // e.g., Breakfast, Lunch
+  category: { type: String, required: true }, // Breakfast, Lunch, ...
   price: { type: Number, required: true },
   description: { type: String },
   image: { type: String },
-}, { timestamps: true });
+  rating: { type: Number, default: 0 },
+  createdAt: { type: Date, default: Date.now },
+})
 
-export default mongoose.model("Menu", menuSchema);
+export default mongoose.model('MenuItem', MenuItemSchema)

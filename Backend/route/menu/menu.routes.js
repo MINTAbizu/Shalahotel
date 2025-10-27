@@ -1,11 +1,69 @@
-import express from "express";
-import { getMenu, addMenu, updateMenu, deleteMenu } from "../controllers/menu.controller.js";
+// import express from "express";
+// import { getMenu, addMenu, updateMenu, deleteMenu } from "../controllers/menu.controller.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get("/", getMenu);
-router.post("/", addMenu);
-router.put("/:id", updateMenu);
-router.delete("/:id", deleteMenu);
+// router.get("/", getMenu);
+// router.post("/", addMenu);
+// router.put("/:id", updateMenu);
+// router.delete("/:id", deleteMenu);
 
-export default router;
+// export default router;
+import express from 'express'
+import MenuItem from '../../models/menu/menu.model.js'
+
+const router = express.Router()
+
+// GET all
+router.get('/post', async (req, res) => {
+  try {
+    const items = await MenuItem.find().sort({ createdAt: -1 })
+    res.json(items)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// GET by id
+router.get('/:id', async (req, res) => {
+  try {
+    const item = await MenuItem.findById(req.params.id)
+    if (!item) return res.status(404).json({ message: 'Not found' })
+    res.json(item)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// POST create
+router.post('/post', async (req, res) => {
+  try {
+    const newItem = new MenuItem(req.body)
+    const saved = await newItem.save()
+    res.status(201).json(saved)
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
+
+// PUT update
+router.put('/:id', async (req, res) => {
+  try {
+    const updated = await MenuItem.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.json(updated)
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
+
+// DELETE
+router.delete('/:id', async (req, res) => {
+  try {
+    await MenuItem.findByIdAndDelete(req.params.id)
+    res.json({ message: 'Deleted' })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+export default router

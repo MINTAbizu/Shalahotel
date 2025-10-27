@@ -2,9 +2,9 @@ import express from  "express";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
-import userroute from './route/user/user.route.js'
+// import userroute from './route/user/user.route.js'
 import booking from './route/Booking/book.route.js'
-// import menuRoutes from "./routes/menu.routes.js";
+import menuRoutes from "./route/menu/menu.routes.js";
 // import ordersRoutes from "./routes/orders.routes.js";
 // import servicesRoutes from "./routes/services.routes.js";
 // import inventoryRoutes from "./routes/inventory.routes.js";
@@ -14,6 +14,7 @@ import booking from './route/Booking/book.route.js'
 // import customersRoutes from "./routes/customers.routes.js";
 // import reviewsRoutes from "./routes/reviews.routes.js";
 // import analysisRoutes from "./routes/analysis.routes.js";
+
 const PORT = process.env.PORT || 5000;
 import cors from "cors";
 
@@ -28,8 +29,9 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // custom route
-app.use('/api',userroute)
+// app.use('/api',userroute)
 app.use('/api',booking)
+app.use('/api/menu', menuRoutes)
 
 // app.use("/api/menu", menuRoutes);
 // app.use("/api/orders", ordersRoutes);

@@ -73,7 +73,8 @@ const SAMPLE_ITEMS = [
     image:
       'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f2e3d4c5b6a7d8c9e0f1a2b3c4d5e6f',
   },
-  {
+  {     
+
     id: '5',
     name: 'Full Breakfast',
     description: 'Eggs, bacon, sausage, beans, grilled tomato, toast.',

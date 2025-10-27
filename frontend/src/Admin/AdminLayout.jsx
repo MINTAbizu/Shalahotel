@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { FiMenu, FiHome, FiShoppingCart, FiBox, FiDollarSign, FiUsers, FiSettings, FiBarChart2, FiFileText, FiStar, FiX } from 'react-icons/fi';
+import React, { useState } from 'react'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import {
+  FiMenu,
+  FiHome,
+  FiShoppingCart,
+  FiBox,
+  FiDollarSign,
+  FiUsers,
+  FiSettings,
+  FiBarChart2,
+  FiFileText,
+  FiStar,
+  FiX,
+} from 'react-icons/fi'
+import './adminlayout.css'
 
 const menuItems = [
-  { name: 'Dashboard', path: '/', icon: <FiHome /> },
-  { name: 'Menu Management', path: '/menu', icon: <FiSettings /> },
+  { name: 'Dashboard', path: '/dashboard', icon: <FiHome /> },
+  { name: 'Menu Management', path: '/MenuManagement', icon: <FiSettings /> },
   { name: 'Orders', path: '/orders', icon: <FiShoppingCart /> },
   { name: 'Services', path: '/services', icon: <FiBox /> },
   { name: 'Inventory', path: '/inventory', icon: <FiBox /> },
@@ -14,89 +27,100 @@ const menuItems = [
   { name: 'Content Management', path: '/content', icon: <FiFileText /> },
   { name: 'Customers', path: '/customers', icon: <FiUsers /> },
   { name: 'Reviews', path: '/reviews', icon: <FiStar /> },
-];
+]
 
 const AdminLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false) // mobile
+  const [collapsed, setCollapsed] = useState(false) // desktop icon-only
+  const location = useLocation()
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar for large screens */}
-      <aside className={`hidden md:flex flex-col bg-white shadow-lg w-64 transition-all duration-300`}>
-        <div className="flex items-center justify-between p-4 border-b">
-          <span className="font-bold text-lg">Admin</span>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)}>
-            <FiMenu />
-          </button>
-        </div>
-        <nav className="mt-4 flex-1 overflow-y-auto">
-          {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="flex items-center gap-3 p-3 hover:bg-gray-100 transition-colors"
-            >
-              <span className="text-lg">{item.icon}</span>
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </nav>
-      </aside>
+    <div className="admin-root">
+      {/* Sidebar (desktop + mobile) */}
+      <aside
+        className={`sidebar ${collapsed ? 'collapsed' : ''} ${sidebarOpen ? 'open' : ''}`}
+        aria-hidden={!sidebarOpen && window.innerWidth < 768}
+      >
+        <div className="sidebar-top">
+          <div className="brand">
+            <img src="https://shalahotel.com/wp-content/uploads/2022/03/cropped-favicon-1-32x32.png" alt="logo" />
+            {!collapsed && <span className="brand-text">Shala Admin</span>}
+          </div>
 
-      {/* Mobile Sidebar Overlay */}
-      <div className={`fixed inset-0 z-40 md:hidden ${sidebarOpen ? 'block' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-black opacity-50" onClick={() => setSidebarOpen(false)}></div>
-        <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white shadow-lg p-4">
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-bold text-lg">Admin</span>
-            <button onClick={() => setSidebarOpen(false)}>
+          <div className="sidebar-controls">
+            <button
+              className="icon-btn hide-on-mobile"
+              aria-label="Collapse sidebar"
+              onClick={() => setCollapsed((s) => !s)}
+              title={collapsed ? 'Expand' : 'Collapse'}
+            >
+              <FiMenu />
+            </button>
+
+            <button
+              className="icon-btn show-on-mobile"
+              aria-label="Close sidebar"
+              onClick={() => setSidebarOpen(false)}
+            >
               <FiX />
             </button>
           </div>
-          <nav className="flex flex-col space-y-2">
-            {menuItems.map((item) => (
+        </div>
+
+        <nav className="sidebar-nav" role="navigation" aria-label="Admin main">
+          {menuItems.map((item) => {
+            const active = location.pathname === item.path || location.pathname.startsWith(item.path + '/')
+            return (
               <Link
                 key={item.name}
                 to={item.path}
-                className="flex items-center gap-3 p-3 hover:bg-gray-100 transition-colors"
+                className={`nav-item ${active ? 'active' : ''}`}
+                title={collapsed ? item.name : ''}
                 onClick={() => setSidebarOpen(false)}
               >
-                <span className="text-lg">{item.icon}</span>
-                <span>{item.name}</span>
+                <span className="nav-icon">{item.icon}</span>
+                {!collapsed && <span className="nav-label">{item.name}</span>}
               </Link>
-            ))}
-          </nav>
-        </aside>
-      </div>
+            )
+          })}
+        </nav>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Topbar */}
-        <header className="flex items-center justify-between bg-white shadow px-4 h-16">
-          <div className="flex items-center gap-4">
-            {/* Mobile menu button */}
-            <button className="md:hidden" onClick={() => setSidebarOpen(true)}>
+        <div className="sidebar-footer">
+          {!collapsed && <small className="muted">Logged in as Admin</small>}
+        </div>
+      </aside>
+
+      {/* Mobile overlay when sidebar open */}
+      <div
+        className={`overlay ${sidebarOpen ? 'visible' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+        aria-hidden={!sidebarOpen}
+      />
+
+      {/* Main content */}
+      <div className="main">
+        <header className="topbar">
+          <div className="left">
+            <button className="icon-btn show-on-mobile" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
               <FiMenu />
             </button>
-            <h1 className="font-bold text-lg">Admin Dashboard</h1>
+            <h1 className="title">Admin Dashboard</h1>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="hidden md:block">Admin User</span>
-            <img
-              src="https://via.placeholder.com/32"
-              alt="Profile"
-              className="w-8 h-8 rounded-full"
-            />
+
+          <div className="right">
+            <div className="profile">
+              <img src="https://via.placeholder.com/32" alt="profile" />
+              <span className="profile-name hide-on-mobile">Admin User</span>
+            </div>
           </div>
         </header>
 
-        {/* Page Content */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="content">
           <Outlet />
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminLayout;
+export default AdminLayout
