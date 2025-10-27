@@ -1,10 +1,13 @@
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose'
 const inventorySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  quantity: { type: Number, required: true },
-  category: String,
-  supplier: String,
-}, { timestamps: true });
+     name: String,
+    category: String,
+    unit: String,
+    cost: Number,
+    quantity: Number,
+    status: String,
+});
 
-export default mongoose.model("Inventory", inventorySchema);
+const InventoryItem = mongoose.model('InventoryItem', inventorySchema);
+
+export default InventoryItem

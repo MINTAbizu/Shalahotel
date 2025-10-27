@@ -5,11 +5,13 @@ export default function MenuList() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/menu')
+    fetch('http://localhost:5000/api/menu/post')
       .then((res) => res.json())
       .then(setItems)
+      
       .catch(console.error);
   }, []);
+  console.log(items)
 
   return (
     <div className="container py-4">

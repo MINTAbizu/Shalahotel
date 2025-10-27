@@ -49,7 +49,7 @@ function Header() {
               <Link to={'/checkoutproduct'}> 
                              <span className="cart-count nav-item">
                               <i className="bi bi-cart-fill"></i>
-                              <span className='basketcount'>{basket.length}</span>
+                              <span className='basketcount '>{basket.length}</span>
                               </span>
 
               </Link>

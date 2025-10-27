@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './manu.css'
 import MenuIcon from '@mui/icons-material/Menu'
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast'
@@ -10,15 +10,25 @@ import image4 from '../../assets/hoem.jpg'
 import Manu from './Manu'
 import { Link } from 'react-router-dom'
 
-const sampleProducts = [
-  { id: 1, description: 'Description 1', image: image4, price: 1231, rating: 3 },
-  { id: 2, description: 'Description 2', image: image4, price: 980, rating: 4 },
-  { id: 3, description: 'Description 3', image: image4, price: 450, rating: 5 },
-  { id: 4, description: 'Description 4', image: image4, price: 610, rating: 4 },
-  // add more items as needed
-]
+// const sampleProducts = [
+//   { id: 1, description: 'Description 1', image: image4, price: 1231, rating: 3 },
+//   { id: 2, description: 'Description 2', image: image4, price: 980, rating: 4 },
+//   { id: 3, description: 'Description 3', image: image4, price: 450, rating: 5 },
+//   { id: 4, description: 'Description 4', image: image4, price: 610, rating: 4 },
+//   // add more items as needed
+// ]
 
 function Menuheader() {
+   const [items, setItems] = useState([]);
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/api/menu/post')
+        .then((res) => res.json())
+        .then(setItems)
+        
+        .catch(console.error);
+    }, []);
+    console.log(items)
   return (
     <div className="container py-4">
       {/* Top menu (scrollable on small screens) */}
@@ -55,10 +65,10 @@ function Menuheader() {
           </div>
         </div>
       </div>
-
+      <p>This product is displayed from Admin dash board </p>
       {/* Products grid */}
       <div className="row g-3">
-        {sampleProducts.map(p => (
+        {items.map(p => (
           <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
             <Manu {...p} />
           </div>

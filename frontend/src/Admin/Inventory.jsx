@@ -1,78 +1,158 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState, useContext } from 'react';
+// import Sidebar from '../Sidebar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './items.css';
+// import { StatusContext } from '../../context/StatusContext';
+import { Link } from 'react-router-dom';
+import { ListItemIcon } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import VisibilityIcon from '@mui/icons-material/Visibility'; // Import View Icon
 
-const mockInventory = [
-  { id: 1, item: 'Shampoo Bottles', quantity: 120, category: 'Amenities' },
-  { id: 2, item: 'Towels', quantity: 200, category: 'Laundry' },
-  { id: 3, item: 'Bedsheets', quantity: 150, category: 'Bedding' },
-  { id: 4, item: 'Coffee Beans', quantity: 50, category: 'Kitchen' },
-];
+function Inventory() {
+    // const { setStatusData } = useContext(StatusContext);
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10; // Number of items per page
 
-const Inventory = () => {
-  return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Inventory</h2>
-      <p className="text-sm text-gray-600">Manage hotel stock and supplies.</p>
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/menu/getitem');
+                setItems(response.data);
+                aggregateStatus(response.data);
+            } catch (error) {
+                console.error('Error fetching items:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Left: Inventory list */}
-        <div className="p-4 bg-white rounded shadow">
-          <h3 className="font-semibold mb-2">Inventory List</h3>
-          <ul className="space-y-2">
-            {mockInventory.map((item) => (
-              <li key={item.id} className="flex justify-between items-center border-b py-2">
-                <div>
-                  <span className="font-medium">{item.item}</span> - {item.quantity} ({item.category})
+        const aggregateStatus = (items) => {
+            const statusCounts = items.reduce((acc, item) => {
+                const normalizedStatus = normalizeStatus(item.status);
+                acc[normalizedStatus] = (acc[normalizedStatus] || 0) + 1;
+                return acc;
+            }, {});
+            // setStatusData(statusCounts);
+        };
+
+        const normalizeStatus = (status) => {
+            switch (status) {
+                case 'Out-stock':
+                    return 'Out of Stock';
+                case 'Low-stock':
+                    return 'Low Stock';
+                case 'In-stock':
+                    return 'In Stock';
+                default:
+                    return status; 
+            }
+        };
+
+        fetchItems();
+    }, []);
+
+    const handleDelete = async (itemId) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+        if (confirmDelete) {
+            try {
+                await axios.delete(`http://localhost:5000/api/menu/${itemId}`);
+                setItems(items.filter(item => item._id !== itemId));
+                alert('Item deleted successfully');
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                alert('Failed to delete the item');
+            }
+        }
+    };
+
+    const handleView = (itemId) => {
+        // Handle view action here, e.g., navigate to a detailed view
+        console.log('View item with ID:', itemId);
+        // You can redirect or show a modal, etc.
+    };
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    const nextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-md-3">
+                    {/* <Sidebar /> */}
                 </div>
-                <div className="flex gap-2">
-                  <button className="text-blue-600 hover:underline">Edit</button>
-                  <button className="text-red-600 hover:underline">Delete</button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                <div className="col-md-9">
+                    <div className="item-categories">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h1>Inventory Management</h1>
+                            <Link to={'/Additems'}>
+                                <button className="btn btn-primary">+ Item</button>
+                            </Link>
+                        </div>
 
-        {/* Right: Add/Edit Form */}
-        <div className="p-4 bg-white rounded shadow">
-          <h3 className="font-semibold mb-2">Add / Edit Inventory Item</h3>
-          <form className="space-y-3">
-            <div>
-              <label className="block text-sm font-medium">Item Name</label>
-              <input
-                type="text"
-                placeholder="Enter item name"
-                className="mt-1 block w-full border rounded px-2 py-1"
-              />
+                        <div className="table-responsive">
+                            <table className="table table-striped table-hover">
+                                <thead className="table-light">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Unit</th>
+                                        <th>Cost</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentItems.map((item) => (
+                                        <tr key={item._id}>
+                                            <td>{item.name}</td>
+                                            <td>{item.category}</td>
+                                            <td>{item.unit}</td>
+                                            <td>{item.cost}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>{item.status}</td>
+                                            <td className='action'>
+                                                <button className="btn btn-primary" onClick={() => handleView(item._id)}>
+                                                    <VisibilityIcon /> View
+                                                </button>
+                                                <button className="btn btn-danger" onClick={() => handleDelete(item._id)}>Delete</button>
+                                                <ListItemIcon>
+                                                    <EditIcon />
+                                                </ListItemIcon>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="pagination mt-3">
+                            <button onClick={prevPage} disabled={currentPage === 1} className="btn btn-secondary">Previous</button>
+                            <span className="mx-2">Page {currentPage} of {totalPages}</span>
+                            <button onClick={nextPage} disabled={currentPage === totalPages} className="btn btn-secondary">Next</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium">Quantity</label>
-              <input
-                type="number"
-                placeholder="Enter quantity"
-                className="mt-1 block w-full border rounded px-2 py-1"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Category</label>
-              <input
-                type="text"
-                placeholder="Enter category"
-                className="mt-1 block w-full border rounded px-2 py-1"
-              />
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
-              >
-                Save
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
 export default Inventory;

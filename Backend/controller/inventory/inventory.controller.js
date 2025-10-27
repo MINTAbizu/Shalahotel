@@ -1,38 +1,65 @@
-import Inventory from "../models/inventory.model.js";
+import newItem from '../../models/inventory/inventory.model.js'
+export const postitem = async (req, res) => {
+    const { name, category, unit, cost, quantity, status } = req.body;
 
-export const getInventory = async (req, res) => {
-  try {
-    const items = await Inventory.find();
-    res.status(200).json(items);
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error });
-  }
+    try {
+        if(!name || !category || !unit || !cost || !quantity || !status){
+            return res.status(400).json({msg:"Please provide all required fileds"})
+
+        }
+        const newItems = new newItem({
+            name,
+            category,
+            unit,
+            cost,
+            quantity,
+            status
+        });
+
+        const savedItem = await newItems.save(); // Save the instance
+        res.status(201).json(savedItem);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
 };
 
-export const addInventory = async (req, res) => {
-  try {
-    const newItem = new Inventory(req.body);
-    await newItem.save();
-    res.status(201).json(newItem);
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error });
-  }
+
+// Get all items
+
+   export const getitem= async (req, res) => {
+   try {
+        const items = await newItem.find();
+        res.json(items);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
 
-export const updateInventory = async (req, res) => {
-  try {
-    const updatedItem = await Inventory.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.status(200).json(updatedItem);
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error });
-  }
+
+// Update an item
+export const updateitem= async (req, res) => {
+    try {
+        const item = await item.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(item);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
 };
 
-export const deleteInventory = async (req, res) => {
-  try {
-    await Inventory.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Inventory item deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error });
-  }
+// Delete an item
+
+export const delateitem= async (req, res) => {
+    try {
+        await item.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Item deleted' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
+
+
+
+// export default postitem
+//      getitem,
+//     delateitem,
+//     updateitem

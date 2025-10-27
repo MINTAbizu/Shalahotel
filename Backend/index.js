@@ -7,13 +7,8 @@ import booking from './route/Booking/book.route.js'
 import menuRoutes from "./route/menu/menu.routes.js";
 // import ordersRoutes from "./routes/orders.routes.js";
 // import servicesRoutes from "./routes/services.routes.js";
-// import inventoryRoutes from "./routes/inventory.routes.js";
-// import expensesRoutes from "./routes/expenses.routes.js";
-// import storeRoutes from "./routes/store.routes.js";
-// import contentRoutes from "./routes/content.routes.js";
-// import customersRoutes from "./routes/customers.routes.js";
-// import reviewsRoutes from "./routes/reviews.routes.js";
-// import analysisRoutes from "./routes/analysis.routes.js";
+import inventoryRoutes from "./route/inventory/inventory.routes.js";
+
 
 const PORT = process.env.PORT || 5000;
 import cors from "cors";
@@ -32,6 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
 // app.use('/api',userroute)
 app.use('/api',booking)
 app.use('/api/menu', menuRoutes)
+app.use('/api/menu', inventoryRoutes)
 
 // app.use("/api/menu", menuRoutes);
 // app.use("/api/orders", ordersRoutes);

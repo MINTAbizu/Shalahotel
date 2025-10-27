@@ -24,6 +24,7 @@ import Inventory from './Admin/Inventory'
 import AdminLayout from './Admin/AdminLayout'
 import MenuManagement from './Admin/MenuManagement'
 import MenuList from './componet/menu/MenuList'
+import Book from './componet/Book/Book'
 function App() {
   return (
     <Router>
@@ -41,6 +42,7 @@ function App() {
             <Route path="/menu/fast-food" element={<FastFoodMenu />} />
             <Route path="/menu/beverage" element={<BeverageMenu />} />
             <Route path="/services" element={<Serveses />} />
+            <Route path="/booking" element={<Book />} />
             <Route path="/checkoutproduct" element={<Checkout />} />
             <Route path="/checkoutproduct/ProductAvailabelarse" element={<ProductAvailabelarse />} />
             <Route path="/Login" element={<Login />} />
@@ -53,7 +55,7 @@ function App() {
               <Route path="MenuManagement" element={<MenuManagement />} />
             {/* Admin */}
 
-             {/* <Route path="/admin/menu" element={<MenuManagement/>} /> */}
+             {/* <Route path="/admin/menu" element={<Inventory/>} /> */}
             <Route path="/menulist" element={<MenuList/>} />
 
             <Route

@@ -1,8 +1,9 @@
 import React from 'react'
-import './Home.css'
+import '../home/home.css'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Servies from '../servies/Servies';
+import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div>
@@ -17,10 +18,10 @@ function Home() {
                     <Carousel 
                      autoPlay={true}
                       infiniteLoop={true}
-                      interval={3500}        /* time each slide stays (ms) */
-                      transitionTime={400}   /* slide transition duration (ms) */
+                      interval={8000}        /* time each slide stays (ms) */
+                      transitionTime={200}   /* slide transition duration (ms) */
                       stopOnHover={true}     /* pause when mouse is over */
-                      swipeable={true}
+                      swipeable={false}
                       emulateTouch={true}
                       showThumbs={false}
                       showStatus={false}
@@ -41,11 +42,11 @@ function Home() {
                 </div>
 
                 <div className="btton">
-                    <button className=" btnss  btn-lg">Book Now</button>
-                    <button className=' btnss btn-lg explo '>Exploree our menu</button>
+                 <Link to={'/booking'}>   <button className="btnss  btn-lg ">Book Now</button></Link>
+                  <Link  to={'/menu'} ><button className='btnss btn-lg explo '>Exploree our menu</button> </Link>
                 </div>
-                <div className="">
-                  <button className='btnss btn-lg '></button>
+                <div className="btton">
+                  {/* <button className="btnss  btn-lg ">Book Now</button> */}
                 </div>
 
             </div>
