@@ -1,49 +1,159 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState, useContext } from 'react';
+// import Sidebar from '../Sidebar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './items.css';
+// import { StatusContext } from '../../context/StatusContext';
+import { Link } from 'react-router-dom';
+import { ListItemIcon } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import VisibilityIcon from '@mui/icons-material/Visibility'; // Import View Icon
 
-const mockCustomers = [
-  { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', reservations: 3 },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', reservations: 2 },
-  { id: 3, name: 'Mike Johnson', email: 'mike@example.com', phone: '555-666-7777', reservations: 5 },
-];
+function Customer() {
+    // const { setStatusData } = useContext(StatusContext);
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10; // Number of items per page
 
-const Customers = () => {
-  return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Customers & Reservations</h2>
-      <p className="text-sm text-gray-600">View and manage all customers and their bookings.</p>
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/getuser');
+                setItems(response.data);
+                aggregateStatus(response.data);
+            } catch (error) {
+                console.error('Error fetching items:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-      <div className="overflow-x-auto bg-white rounded shadow">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Customer ID</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Email</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Phone</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Reservations</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {mockCustomers.map((customer) => (
-              <tr key={customer.id}>
-                <td className="px-4 py-2">{customer.id}</td>
-                <td className="px-4 py-2">{customer.name}</td>
-                <td className="px-4 py-2">{customer.email}</td>
-                <td className="px-4 py-2">{customer.phone}</td>
-                <td className="px-4 py-2">{customer.reservations}</td>
-                <td className="px-4 py-2 flex gap-2">
-                  <button className="text-blue-600 hover:underline">View</button>
-                  <button className="text-green-600 hover:underline">Edit</button>
-                  <button className="text-red-600 hover:underline">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
+        const aggregateStatus = (items) => {
+            const statusCounts = items.reduce((acc, item) => {
+                const normalizedStatus = normalizeStatus(item.status);
+                acc[normalizedStatus] = (acc[normalizedStatus] || 0) + 1;
+                return acc;
+            }, {});
+            // setStatusData(statusCounts);
+        };
 
-export default Customers;
+        const normalizeStatus = (status) => {
+            switch (status) {
+                case 'Out-stock':
+                    return 'Out of Stock';
+                case 'Low-stock':
+                    return 'Low Stock';
+                case 'In-stock':
+                    return 'In Stock';
+                default:
+                    return status; 
+            }
+        };
+
+        fetchItems();
+    }, []);
+ console.log(items)
+
+    const handleDelete = async (itemId) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+        if (confirmDelete) {
+            try {
+                await axios.delete(`http://localhost:5000/api/menu/${itemId}`);
+                setItems(items.filter(item => item._id !== itemId));
+                alert('Item deleted successfully');
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                alert('Failed to delete the item');
+            }
+        }
+    };
+
+    const handleView = (itemId) => {
+        // Handle view action here, e.g., navigate to a detailed view
+        console.log('View item with ID:', itemId);
+        // You can redirect or show a modal, etc.
+    };
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    const nextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-md-3">
+                    {/* <Sidebar /> */}
+                </div>
+                <div className="col-md-9">
+                    <div className="item-categories">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h1>Inventory Management</h1>
+                            <Link to={'/Additems'}>
+                                <button className="btn btn-primary">+ Item</button>
+                            </Link>
+                        </div>
+
+                        <div className="table-responsive">
+                            <table className="table table-striped table-hover">
+                                <thead className="table-light">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Unit</th>
+                                        <th>Cost</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentItems.map((item) => (
+                                        <tr key={item._id}>
+                                            <td>{item.name}</td>
+                                            <td>{item.category}</td>
+                                            <td>{item.unit}</td>
+                                            <td>{item.cost}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>{item.status}</td>
+                                            <td className='action'>
+                                                <button className="btn btn-primary" onClick={() => handleView(item._id)}>
+                                                    <VisibilityIcon /> View
+                                                </button>
+                                                <button className="btn btn-danger" onClick={() => handleDelete(item._id)}>Delete</button>
+                                                <ListItemIcon>
+                                                    <EditIcon />
+                                                </ListItemIcon>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="pagination mt-3">
+                            <button onClick={prevPage} disabled={currentPage === 1} className="btn btn-secondary">Previous</button>
+                            <span className="mx-2">Page {currentPage} of {totalPages}</span>
+                            <button onClick={nextPage} disabled={currentPage === totalPages} className="btn btn-secondary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Customer;

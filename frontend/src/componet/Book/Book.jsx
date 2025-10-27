@@ -81,6 +81,7 @@ function Book() {
                   <div className="col-12 col-md-6">
                     <label className="form-label">Check In</label>
                     <input
+                    required
                       type="date"
                       className="form-control"
                       value={checkInDate}
@@ -92,6 +93,7 @@ function Book() {
                     <label className="form-label">Check Out</label>
                     <input
                       type="date"
+                      required
                       className="form-control"
                       value={checkOutDate}
                       onChange={(e) => setCheckOutDate(e.target.value)}
@@ -107,6 +109,7 @@ function Book() {
                       className="form-control"
                       value={guests}
                       onChange={(e) => setGuests(e.target.value)}
+                      required
                     />
                   </div>
 
@@ -116,6 +119,7 @@ function Book() {
                       className="form-select"
                       value={roomtype}
                       onChange={(e) => setRoomType(e.target.value)}
+                      required
                     >
                       <option value="single">Single Room</option>
                       <option value="double">Double Room</option>

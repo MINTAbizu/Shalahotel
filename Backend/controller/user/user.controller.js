@@ -8,12 +8,12 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Register or Login controller
- const userController = async (req, res) => {
+ export const REGISTER = async (req, res) => {
     const { name, email, password, phone } = req.body;
 
     try {
         //  REGISTER 
-        if (req.path === '/register') {
+        // if (req.path === '/register') {
             const existingUser = await User.findOne({ email });
             if (existingUser) {
                 return res.status(400).json({ message: 'User already exists' });
@@ -31,10 +31,23 @@ const JWT_SECRET = process.env.JWT_SECRET;
                 token,
                 user: { id: newUser._id, name: newUser.name, email: newUser.email }
             });
-        }
+        // }
 
         // ===== LOGIN =====
-        if (req.path === '/login') {
+       
+
+        res.status(400).json({ message: 'Invalid route' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error', error });
+    }
+};
+
+export const Login = async (req, res) => {
+    //  if (req.path === '/login') {
+        try {
+            const { email, password } = req.body;
+        
             const user = await User.findOne({ email });
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
@@ -53,14 +66,14 @@ const JWT_SECRET = process.env.JWT_SECRET;
                 token,
                 user: { id: user._id, name: user.name, email: user.email }
             });
-        }
-
-        res.status(400).json({ message: 'Invalid route' });
-    } catch (error) {
+        // }
+        } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error', error });
-    }
-};
+            
+        }
+}
+ 
 
 export const getuserinfo=async(req,res)=>{
     const {id}=req.params;
@@ -138,4 +151,4 @@ export const changepassword=async(req,res)=>{
     }
 };
 
-export default userController
+// export default userController

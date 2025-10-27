@@ -25,6 +25,8 @@ import AdminLayout from './Admin/AdminLayout'
 import MenuManagement from './Admin/MenuManagement'
 import MenuList from './componet/menu/MenuList'
 import Book from './componet/Book/Book'
+import Customer from './Admin/Customers'
+import AdminBookingTable from './Admin/AdminBookingTable'
 function App() {
   return (
     <Router>
@@ -55,8 +57,9 @@ function App() {
               <Route path="MenuManagement" element={<MenuManagement />} />
             {/* Admin */}
 
-             {/* <Route path="/admin/menu" element={<Inventory/>} /> */}
+             <Route path="Customer" element={<Customer/>} />
             <Route path="/menulist" element={<MenuList/>} />
+            <Route path="/AdminBookingTable" element={<AdminBookingTable/>} />
 
             <Route
               path="*"

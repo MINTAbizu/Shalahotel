@@ -1,15 +1,15 @@
 import express from 'express'
 const route=express.Router()
 
-import  usercontroler  from '../../controller/user/user.controller.js'
+import  { getAllUsers,updateuserinfo,delateuserinfo,changepassword, REGISTER, Login}  from '../../controller/user/user.controller.js'
 
-route.post('/register',usercontroler)
-route.post('/login',usercontroler)
-route.get('/getuser',getuserinfo)
+route.post('/register',REGISTER)
+route.post('/login',Login)
+route.get('/getuser',getAllUsers)
 // route.get('/getAllUsers',getAllUsers)
-// route.put('/updateuser',updateuserinfo)
-// route.delete('/deleteuser',delateuserinfo)
-// route.patch('/changepassword',changepassword)
+route.put('/updateuser',updateuserinfo)
+route.delete('/deleteuser',delateuserinfo)
+route.patch('/changepassword',changepassword)
 
 
 

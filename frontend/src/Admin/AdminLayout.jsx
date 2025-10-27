@@ -19,6 +19,7 @@ const menuItems = [
   { name: 'Dashboard', path: '/dashboard', icon: <FiHome /> },
   { name: 'Menu Management', path: '/MenuManagement', icon: <FiSettings /> },
   { name: 'Orders', path: '/orders', icon: <FiShoppingCart /> },
+  { name: 'AdminBookingTable', path: '/AdminBookingTable', icon: <FiShoppingCart /> },
   { name: 'Services', path: '/services', icon: <FiBox /> },
   { name: 'Inventory', path: '/inventory', icon: <FiBox /> },
   { name: 'Expenses', path: '/expenses', icon: <FiDollarSign /> },
