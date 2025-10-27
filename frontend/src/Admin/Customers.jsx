@@ -83,6 +83,7 @@ function Customers() {
         <div className="col-md-12">
           <div className="customer-management shadow-sm p-4 bg-white rounded">
             <div className="d-flex justify-content-between align-items-center mb-3">
+                <div> </div>
               <h2>👥 Customer Management</h2>
               <input
                 type="text"
