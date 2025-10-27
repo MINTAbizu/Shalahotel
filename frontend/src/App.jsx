@@ -21,6 +21,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Users from './pages/Users'
 import MenuManagement from './Admin/MenuManagement'
+import AdminLayout from './Admin/AdminLayout'
 function App() {
   return (
     <Router>
@@ -70,7 +71,7 @@ function App() {
           </Routes>
         </main>
         <Footer/>
-        {/* < Layou/> */}
+        < AdminLayout/>
       </div>
     </Router>
   )
