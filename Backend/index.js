@@ -28,7 +28,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api',userroute)
 app.use('/api',booking)
 app.use('/api/menu', menuRoutes)
-app.use('/api/menu', inventoryRoutes)
+// app.use('/api/items', inventoryRoutes)
+app.use('/api/items', inventoryRoutes);
+
 app.use('/api', ChapaPayment)
 
 // app.use("/api/menu", menuRoutes);

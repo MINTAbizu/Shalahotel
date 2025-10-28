@@ -9,25 +9,25 @@ const ItemRegisteration = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const response = await axios.get('http://localhost:5000/api/items');
+            const response = await axios.get('http://localhost:5000/api/items');;
             setItems(response.data);
         };
         fetchItems();
     }, []);
-
+console.log(items)
     const handleChange = (e) => {
         setNewItem({ ...newItem, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/items', newItem);
+        await axios.post('http://localhost:5000/api/items/postitem', newItem);
         setNewItem({ name: '', category: '', unit: '', cost: '', quantity: '' }); // Reset form
         // Fetch updated items
-        const response = await axios.get('http://localhost:5000/api/items');
+        const response = await axios.get('http://localhost:5000/api/items');;
         setItems(response.data);
     };
-
+// console.log(response)
     return (
         <div className='itemscontainer '>
             <h1>Inventory Items</h1>
@@ -39,7 +39,7 @@ const ItemRegisteration = () => {
                 <input name="quantity" type="number" value={newItem.quantity} onChange={handleChange} placeholder="Quantity" required />
                 <button type="submit">Add Item</button>
             </form>
-            <table>
+            {/* <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -60,7 +60,7 @@ const ItemRegisteration = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> */}
         </div>
     );
 };

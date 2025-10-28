@@ -1,6 +1,6 @@
 # Shalahotel
 shala hotel and restaurant project  is a fully responsive, modern, and modular web application designed to help hotel administrators efficiently manage all aspects of their operations. It provides an intuitive interface to handle reservations, menu, orders, services, inventory, expenses, store branches, customer reviews, content management, and analytical insights—all in one place.
-Browse available rooms, services, and amenities
+Browse available rooms, services, and 
 
 View menus and special offers
 

@@ -30,11 +30,13 @@ import AdminBookingTable from './Admin/AdminBookingTable'
 import Customers from './Admin/Customers'
 import ItemRegisteration from './Admin/ItemRegisteration'
 import ChapaPayment from './ChapaPayment'
+import { StatusProvider } from './Admin/context/StatusContext'
 function App() {
   return (
     <Router>
       <div>
         <Header />
+        <StatusProvider>
 
         <main>
           <Routes>
@@ -61,7 +63,7 @@ function App() {
             {/* Admin */}
 
              <Route path="Customer" element={<Customers/>} />
-             <Route path="ItemRegisteration" element={<ItemRegisteration/>} />
+             <Route path="/ItemRegisteration" element={<ItemRegisteration/>} />
             <Route path="/menulist" element={<MenuList/>} />
             <Route path="/AdminBookingTable" element={<AdminBookingTable/>} />
             <Route path="/ChapaPayment" element={<ChapaPayment/>} />
@@ -76,6 +78,7 @@ function App() {
             />
           </Routes>
         </main>
+         </StatusProvider>
         <Footer/>
         {/* < AdminLayout/> */}
       </div>
