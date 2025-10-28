@@ -6,7 +6,7 @@ import Manu from './componet/manu/Manu'
 
 import Menuheader from './componet/manu/Menuheader'
 import BeverageMenu from './componet/Stayservi/BeverageMenu'
-import BreakfastMenu from './componet/Stayservi/BreakfastMenu'
+// import BreakfastMenu from './componet/Stayservi/BreakfastMenu'
 import DinnerMenu from './componet/Stayservi/DinnerMenu'
 import FastFoodMenu from './componet/Stayservi/FastFoodMenu'
 import LunchMenu from './componet/Stayservi/LunchMenu'
@@ -31,6 +31,7 @@ import Customers from './Admin/Customers'
 import ItemRegisteration from './Admin/ItemRegisteration'
 import ChapaPayment from './ChapaPayment'
 import { StatusProvider } from './Admin/context/StatusContext'
+import BreakfastMenu from './BreakfastMenu'
 function App() {
   return (
     <Router>
@@ -43,7 +44,7 @@ function App() {
             <Route path="/" element={<Landingpage />} />
             <Route path="/home" element={<Home />} />
             <Route path="/menu" element={<Menuheader />} />
-            <Route path="/menu/breakfast" element={<BreakfastMenu />} />
+            {/* <Route path="/menu/breakfast" element={<BreakfastMenu />} /> */}
             <Route path="/menu/lunch" element={<LunchMenu />} />
             <Route path="/menu/dinner" element={<DinnerMenu />} />
             <Route path="/menu/fast-food" element={<FastFoodMenu />} />
@@ -67,6 +68,7 @@ function App() {
             <Route path="/menulist" element={<MenuList/>} />
             <Route path="/AdminBookingTable" element={<AdminBookingTable/>} />
             <Route path="/ChapaPayment" element={<ChapaPayment/>} />
+            <Route path="/BreakfastMenu" element={<BreakfastMenu/>} />
 
             <Route
               path="*"

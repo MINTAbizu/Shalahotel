@@ -9,6 +9,7 @@ import ChapaPayment from "./payment/chaparoute.js";
 // import ordersRoutes from "./routes/orders.routes.js";
 // import servicesRoutes from "./routes/services.routes.js";
 import inventoryRoutes from "./route/inventory/inventory.routes.js";
+import orderRoutes from './route/order/orders.routes.js';
 
 
 const PORT = process.env.PORT || 5000;
@@ -30,6 +31,8 @@ app.use('/api',booking)
 app.use('/api/menu', menuRoutes)
 // app.use('/api/items', inventoryRoutes)
 app.use('/api/items', inventoryRoutes);
+
+app.use('/api/orders', orderRoutes);
 
 app.use('/api', ChapaPayment)
 

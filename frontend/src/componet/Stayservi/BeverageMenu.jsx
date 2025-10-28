@@ -34,6 +34,7 @@ const SAMPLE_BEVERAGES = [
     calories: 120,
     image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop',
   },
+
   {
     id: '2',
     name: 'Iced Latte',
@@ -61,6 +62,7 @@ const SAMPLE_BEVERAGES = [
     calories: 150,
     image: 'https://images.unsplash.com/photo-1561043433-aaf687c4cf4e?q=80&w=800&auto=format&fit=crop',
   },
+  // 
   {
     id: '5',
     name: 'Iced Tea',
