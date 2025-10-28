@@ -1,6 +1,6 @@
 import express from "express";
 const route = express.Router();
-import  {bookcontroller}  from "../../controller/Booking/book.controller.js";
+import  {bookcontroller}  from "../../controller/booking/booking.controller.js";
 
 route.post("/booking", bookcontroller);
 route.get("/getbookings", bookcontroller);
