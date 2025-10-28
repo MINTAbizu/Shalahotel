@@ -6,3 +6,4 @@ route.post("/booking", bookcontroller);
 route.get("/getbookings", bookcontroller);
 route.delete("/deletebooking/:id", bookcontroller);
 export default route;
+

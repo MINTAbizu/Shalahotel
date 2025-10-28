@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import userroute from './route/user/user.route.js'
-import booking from './route/Booking/book.route.js'
+import booking from './route/Booking/booking.route.js'
 import menuRoutes from "./route/menu/menu.routes.js";
 import ChapaPayment from "./payment/chaparoute.js";
 // import ordersRoutes from "./routes/orders.routes.js";
