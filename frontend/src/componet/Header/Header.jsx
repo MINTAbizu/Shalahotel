@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStateValue } from '../../Staateprovider/Stateprovider'
-import '../Header/Header.css'
+// import '../Header/Header.css'
 import { Link } from 'react-router-dom'
 function Header() {
     const [{ basket }] = useStateValue()
