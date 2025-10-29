@@ -70,7 +70,8 @@ const SAMPLE_BEVERAGES = [
     price: 3.75,
     category: 'Tea',
     calories: 90,
-    image: 'https://images.unsplash.com/photo-1510626176961-4b37d0f0b987?q=80&w=800&auto=format&fit=crop',
+    image: 
+    'https://images.unsplash.com/photo-1510626176961-4b37d0f0b987?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: '6',

@@ -63,7 +63,8 @@ const SAMPLE_ITEMS = [
     category: 'Sandwiches',
     calories: 720,
     vegetarian: false,
-    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop',
+    image: 
+    'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: '5',

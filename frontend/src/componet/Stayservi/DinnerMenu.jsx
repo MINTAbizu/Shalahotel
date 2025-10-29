@@ -33,7 +33,8 @@ const SAMPLE_ITEMS = [
     category: 'Seafood',
     calories: 480,
     vegetarian: false,
-    image: 'https://images.unsplash.com/photo-1604908812316-9e4a9a65d1c4?q=80&w=800&auto=format&fit=crop',
+    image:
+     'https://images.unsplash.com/photo-1604908812316-9e4a9a65d1c4?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: '2',
@@ -73,7 +74,8 @@ const SAMPLE_ITEMS = [
     category: 'Pasta',
     calories: 780,
     vegetarian: false,
-    image: 'https://images.unsplash.com/photo-1603133872878-684f98f2b45a?q=80&w=800&auto=format&fit=crop',
+    image:
+     'https://images.unsplash.com/photo-1603133872878-684f98f2b45a?q=80&w=800&auto=format&fit=crop',
   },
 ];
 

@@ -7,13 +7,14 @@ const AdminBookingTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-
+const API_BASE = process.env.REACT_APP_API_URL;
+// const response = await fetch(`${API_BASE}/bookings`);
   // ✅ Fetch all bookings from backend
   const fetchBookings = async () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("http://localhost:5000/api/getbookings"); // Adjust URL
+      const res = await axios.get(`${API_BASE}/api/getbookings`); // Adjust URL
       setBookings(res.data.bookings || []);
     } catch (err) {
       setError("Failed to fetch bookings. Please try again later.");

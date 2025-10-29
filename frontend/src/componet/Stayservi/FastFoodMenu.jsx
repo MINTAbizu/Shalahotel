@@ -54,7 +54,8 @@ const SAMPLE_ITEMS = [
     category: 'Sides',
     calories: 340,
     vegetarian: true,
-    image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop',
+    image:
+     'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: '4',
