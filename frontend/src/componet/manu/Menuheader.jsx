@@ -20,15 +20,17 @@ import { Link } from 'react-router-dom'
 
 function Menuheader() {
    const [items, setItems] = useState([]);
-  
-    useEffect(() => {
-      fetch('http://localhost:5000/api/menu/post')
-        .then((res) => res.json())
-        .then(setItems)
-        
-        .catch(console.error);
-    }, []);
-    console.log(items)
+    const API_BASE = import.meta.env.VITE_API_URL;
+    // fetch(`${API_BASE}/menu/post`
+   useEffect(() => {
+  fetch(`${API_BASE}/menu/`)  // <-- notice the trailing slash
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
+    })
+    .then(setItems)
+    .catch(console.error);
+}, []);
   return (
     <div className="container py-4">
       {/* Top menu (scrollable on small screens) */}

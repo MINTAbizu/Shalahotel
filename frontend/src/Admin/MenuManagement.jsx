@@ -15,10 +15,11 @@ export default function MenuManagement() {
   });
   const [editingId, setEditingId] = useState(null);
 
+  // Fetch menu items
   const fetchItems = async () => {
     setLoading(true);
-    try {   
-      const res = await fetch(`${API_BASE}/post`);
+    try {
+      const res = await fetch(`${API_BASE}/menu`); // GET all items
       const data = await res.json();
       setItems(data);
     } catch (err) {
@@ -36,13 +37,15 @@ export default function MenuManagement() {
     e.preventDefault();
     try {
       const method = editingId ? 'PUT' : 'POST';
-      const url = editingId ? `${API_BASE}/${editingId}` : `${API_BASE}/post`;
+      const url = editingId ? `${API_BASE}/menu/${editingId}` : `${API_BASE}/menu`; // updated
 
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
+
+      if (!res.ok) throw new Error('Failed to save item');
 
       setForm({ name: '', category: 'Breakfast', price: '', description: '', image: '', rating: 0 });
       setEditingId(null);
@@ -65,8 +68,8 @@ export default function MenuManagement() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this item?')) return;
-    await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+    if (!window.confirm('Are you sure?')) return;
+    await fetch(`${API_BASE}/menu/${id}`, { method: 'DELETE' });
     fetchItems();
   };
 
