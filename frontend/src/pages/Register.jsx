@@ -104,6 +104,7 @@ export default function Register() {
             fullWidth
             label="Phone"
             name="phone"
+            type="tel"
             margin="normal"
             onChange={handleChange}
             required
