@@ -1,6 +1,8 @@
 import React from 'react'
 import { useStateValue } from '../../Staateprovider/Stateprovider'
 // import '../Header/Header.css'
+
+
 import { Link } from 'react-router-dom'
 function Header() {
     const [{ basket }] = useStateValue()
@@ -16,7 +18,7 @@ function Header() {
               height="32"
               className="me-2"
             />
-            <span className="fw-bold btn btn-primary"> Shala Hotel</span>
+            <span className="rounded logotitile">  <small>Shala Hotel</small>  </span>
           </a>
 
           <button

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE = 'http://localhost:5000/api/menu';
+  const API_BASE = import.meta.env.VITE_API_URL;
 
 export default function MenuManagement() {
   const [items, setItems] = useState([]);
@@ -17,7 +17,7 @@ export default function MenuManagement() {
 
   const fetchItems = async () => {
     setLoading(true);
-    try {
+    try {   
       const res = await fetch(`${API_BASE}/post`);
       const data = await res.json();
       setItems(data);
