@@ -56,7 +56,8 @@ export default function Register() {
     }
 
     try {
-      await API.post("/register", form);
+      // await API.post("/register", form);
+      await fetch(`${API_BASE}/register`,form)
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");

@@ -20,49 +20,49 @@ function Book() {
   const [fullNameError, setFullNameError] = useState('')
   const [message, setMessage] = useState('')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Basic validation
-    if (!fullName.trim()) {
-      setFullNameError('Full name is required')
-      return
-    } else {
-      setFullNameError('')
-    }
-
-    if (!phone.trim()) {
-      setPhoneError('Phone number is required')
-      return
-    } else {
-      setPhoneError('')
-    }
-
-    const formData = {
-      checkInDate,
-      checkOutDate,
-      guests,
-      roomtype,
-      specialRequests,
-      fullName,
-      phone
-    }
-
-    try {
-      const response = await fetch('http://localhost:5000/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-      console.log(data)
-      setMessage('Booking successful!')
-    } catch (error) {
-      console.error('Error:', error)
-      setMessage('Booking failed. Please try again.')
-    }
+  if (!fullName.trim()) {
+    setFullNameError('Full name is required');
+    return;
+  } else {
+    setFullNameError('');
   }
+
+  if (!phone.trim()) {
+    setPhoneError('Phone number is required');
+    return;
+  } else {
+    setPhoneError('');
+  }
+
+  const formData = {
+    checkInDate,
+    checkOutDate,
+    guests,
+    roomtype,
+    specialRequests,
+    fullName,
+    phone
+  };
+
+  const API_BASE = import.meta.env.VITE_API_URL; 
+  try {
+    const response = await fetch(`${API_BASE}/booking`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    setMessage('Booking successful!');
+  } catch (error) {
+    console.error('Error:', error);
+    setMessage('Booking failed. Please try again.');
+  }
+};
 
   return (
     <section className="bookcontainer container-fluid my-5 bg-light py-5">
