@@ -170,10 +170,10 @@ function Book() {
                             {user ? (
                               <>
                                 <span className='color:danger' style={{color:'orange',fontSize:'18px' ,backgroundColor:'black'}}>Welcome,: {user.name}</span>
-                                <button onClick={handleLogout}> Book Now</button>
+                                <button  type="submit"> Book Now</button>
                               </>
                             ) : (
-                              <Link to={'/Login'}> <button type="submit" className="btn btn-warning w-100">
+                              <Link to={'/Login'}> <button className="btn btn-warning w-100">
                      Login-first to-Book
                     </button></Link>
                             )}
