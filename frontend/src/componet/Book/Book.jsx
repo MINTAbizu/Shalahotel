@@ -169,7 +169,7 @@ function Book() {
                       <nav>
                             {user ? (
                               <>
-                                <span className='color:danger' style={{color:'orange',fontSize:'18px' }}>Welcome,</span>
+                                <span className='color:danger' style={{color:'orange',fontSize:'28px', fontWeight:'bold' }}>Welcome,</span>
                                 <button  type="submit"> Book Now</button>
                               </>
                             ) : (
