@@ -4,8 +4,15 @@ import { useStateValue } from '../../Staateprovider/Stateprovider'
 
 
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../Context/Authcontext';
 function Header() {
     const [{ basket }] = useStateValue()
+     const { user, loading } = useAuth();
+      const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    // optionally redirect to home page
+  };
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
@@ -58,7 +65,17 @@ function Header() {
                   {/* <FaShoppingCart />  */}
               <li className="nav-item d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
                 {/* <button className="btn btn-outline-primary btn-sm">Login</button> */}
-                <Link to={'/Login'}><button className="btn btn-primary btn-sm">Login</button></Link>
+                {/* <Link to={'/Login'}><button className="btn btn-primary btn-sm">Login</button></Link> */}
+                 <nav>
+        {user ? (
+          <>
+            <span>Welcome, {user.name}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <Link to={'/Login'}>Login</Link>
+        )}
+      </nav>
                
               </li>
             </ul>
