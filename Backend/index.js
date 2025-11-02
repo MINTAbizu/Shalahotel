@@ -9,7 +9,7 @@ import menuRoutes from "./route/menu/menu.routes.js";
 import ChapaPayment from "./payment/chaparoute.js";
 import inventoryRoutes from "./route/inventory/inventory.routes.js";
 import orderRoutes from "./route/order/orders.routes.js";
-import customersRoutes from "./route/customers/customers.routes.js";
+// import customersRoutes from "./route/customers/customers.routes.js";
 
 dotenv.config();
 
@@ -42,7 +42,7 @@ app.use("/api", booking);
 app.use("/api/menu", menuRoutes);
 app.use("/api/items", inventoryRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api", customersRoutes);
+// app.use("/api", customersRoutes);
 app.use("/api", ChapaPayment);
 
 // ✅ Start server
