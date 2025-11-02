@@ -31,6 +31,7 @@ import Customers from './Admin/Customers'
 import ItemRegisteration from './Admin/ItemRegisteration'
 import ChapaPayment from './ChapaPayment'
 import { StatusProvider } from './Admin/context/StatusContext'
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 function App() {
   return (
     <Router>
@@ -49,7 +50,15 @@ function App() {
             <Route path="/menu/fast-food" element={<FastFoodMenu />} />
             <Route path="/menu/beverage" element={<BeverageMenu />} />
             <Route path="/services" element={<Serveses />} />
-            <Route path="/booking" element={<Book />} />
+
+            <Route path="/booking"
+             element={
+              <ProtectedRoute> 
+
+             <Book />
+             </ProtectedRoute>
+             } />
+
             <Route path="/checkoutproduct" element={<Checkout />} />
             <Route path="/checkoutproduct/ProductAvailabelarse" element={<ProductAvailabelarse />} />
             <Route path="/Login" element={<Login />} />
