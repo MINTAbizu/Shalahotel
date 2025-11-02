@@ -3,7 +3,7 @@ import { getCustomers, addCustomer, updateCustomer, deleteCustomer } from "../co
 
 const router = express.Router();
 
-router.get("/", getCustomers);
+router.get("/getuser", getCustomers);
 router.post("/", addCustomer);
 router.put("/:id", updateCustomer);
 router.delete("/:id", deleteCustomer);

@@ -1,59 +1,49 @@
-import express from  "express";
+import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
 import mongoose from "mongoose";
-import userroute from './route/user/user.route.js'
-import booking from './route/Booking/booking.route.js'
-import menuRoutes from "./route/menu/menu.routes.js";
-import ChapaPayment from "./payment/chaparoute.js";
-// import ordersRoutes from "./routes/orders.routes.js";
-// import servicesRoutes from "./routes/services.routes.js";
-import inventoryRoutes from "./route/inventory/inventory.routes.js";
-import orderRoutes from './route/order/orders.routes.js';
-
-
-const PORT = process.env.PORT || 5000;
 import cors from "cors";
 
+import userroute from "./route/user/user.route.js";
+import booking from "./route/Booking/booking.route.js";
+import menuRoutes from "./route/menu/menu.routes.js";
+import ChapaPayment from "./payment/chaparoute.js";
+import inventoryRoutes from "./route/inventory/inventory.routes.js";
+import orderRoutes from "./route/order/orders.routes.js";
+import customersRoutes from "./route/customers/customers.routes.js";
+
+dotenv.config();
+
 const app = express();
-// Middleware
-app.use(express.json());
-app.use(cors());
+const PORT = process.env.PORT || 5000;
+
+// ✅ Correct CORS configuration
 app.use(
   cors({
-    origin: "https://shala22.netlify.app/", // your frontend origin
-    credentials: true, // allow cookies and auth headers
+    origin: [
+      "http://localhost:5173",        // local development
+      "https://shala22.netlify.app"   // your deployed frontend (NO trailing slash!)
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // if you’re using cookies or auth tokens
   })
 );
 
-// MongoDB connection
+app.use(express.json()); // ✅ parse JSON request bodies
+
+// ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ Connected to MongoDB'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// custom route
-app.use('/api',userroute)
-app.use('/api',booking)
-app.use('/api/menu', menuRoutes)
-// app.use('/api/items', inventoryRoutes)
-app.use('/api/items', inventoryRoutes);
+// ✅ Routes
+app.use("/api", userroute);
+app.use("/api", booking);
+app.use("/api/menu", menuRoutes);
+app.use("/api/items", inventoryRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api", customersRoutes);
+app.use("/api", ChapaPayment);
 
-app.use('/api/orders', orderRoutes);
-
-app.use('/api', ChapaPayment)
-
-// app.use("/api/menu", menuRoutes);
-// app.use("/api/orders", ordersRoutes);
-// app.use("/api/services", servicesRoutes);
-// app.use("/api/inventory", inventoryRoutes);
-// app.use("/api/expenses", expensesRoutes);
-// app.use("/api/store", storeRoutes);
-// app.use("/api/content", contentRoutes);
-// app.use("/api/customers", customersRoutes);
-// app.use("/api/reviews", reviewsRoutes);
-// app.use("/api/analysis", analysisRoutes);
-
-
-// Start server
-
+// ✅ Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
