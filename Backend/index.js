@@ -19,6 +19,12 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(
+  cors({
+    origin: "https://shala22.netlify.app/", // your frontend origin
+    credentials: true, // allow cookies and auth headers
+  })
+);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)

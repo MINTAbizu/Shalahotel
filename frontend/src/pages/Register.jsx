@@ -6,8 +6,9 @@ import {
   Typography,
   Paper
 } from "@mui/material";
-import API from "../Api/axios";
+// import API from "../Api/axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/Authcontext";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", password: "" });
@@ -16,7 +17,7 @@ export default function Register() {
   const [emailerror, setEmailError] = useState("");
   const [passworderror, setPasswordError] = useState("");
   const navigate = useNavigate();
-
+const {register}=useAuth()
   // ✅ Form input handler
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -58,9 +59,14 @@ export default function Register() {
 
     try {
       // ✅ Send POST request
-      const response = await API.post("/register", form);
+      // const response = await API.post("/register", form);
+const response = await register({
+  name: form.name,
+  email: form.email,
+  password: form.password,
+});
+console.log("Registration Success:", response.data);
 
-      console.log("Registration Success:", response.data);
       navigate("/login");
     } catch (err) {
       console.error("Registration Error:", err);
