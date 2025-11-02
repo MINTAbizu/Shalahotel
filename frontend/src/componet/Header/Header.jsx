@@ -66,6 +66,8 @@ function Header() {
               <li className="nav-item d-flex gap-2 ms-lg-3 mt-2 mt-lg-0">
                 {/* <button className="btn btn-outline-primary btn-sm">Login</button> */}
                 {/* <Link to={'/Login'}><button className="btn btn-primary btn-sm">Login</button></Link> */}
+
+                
                  <nav>
         {user ? (
           <>
@@ -75,7 +77,7 @@ function Header() {
         ) : (
           <Link to={'/Login'}>Login</Link>
         )}
-      </nav>
+               </nav>
                
               </li>
             </ul>

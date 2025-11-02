@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './book.css'
 import { Rating } from '@mui/material'
+import { useAuth } from '../../Context/Authcontext';
+import { Link } from 'react-router-dom';
 
 function Book() {
+  const { user, loading } = useAuth();
   const availableRooms = [
     { id: 1, name: 'Deluxe Room', price: 150, image: 'https://via.placeholder.com/80', rating: 4.5 },
     { id: 2, name: 'Standard Room', price: 100, image: 'https://via.placeholder.com/80', rating: 3.8 },
@@ -163,9 +166,19 @@ function Book() {
                   </div>
 
                   <div className="col-12 d-flex justify-content-center">
-                    <button type="submit" className="btn btn-warning w-100">
-                      Book Now
-                    </button>
+                      <nav>
+                            {user ? (
+                              <>
+                                <span className='color:danger' style={{color:'orange',fontSize:'18px' ,backgroundColor:'black'}}>Welcome,: {user.name}</span>
+                                <button onClick={handleLogout}> Book Now</button>
+                              </>
+                            ) : (
+                              <Link to={'/Login'}> <button type="submit" className="btn btn-warning w-100">
+                     Login-first to-Book
+                    </button></Link>
+                            )}
+                          </nav>
+                   
                   </div>
 
                   {message && <p className="text-center mt-2">{message}</p>}
