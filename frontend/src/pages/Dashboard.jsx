@@ -15,7 +15,7 @@ export default function Dashboard() {
         variant="contained"
         color="primary"
         sx={{ mt: 3 }}
-        onClick={() => navigate("/Book")}
+        onClick={() => navigate("/booking")}
       >
         Book-now
       </Button>
