@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useState } from "react"
 import { authservices } from "../Servies/Api"
 
 
@@ -7,6 +7,7 @@ const Authcontext=createContext(null)
 
 export const Authprovider=({children})=>{
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const register= async (userdata)=>{
 
@@ -21,19 +22,27 @@ export const Authprovider=({children})=>{
         }
 
     }
-    const login= async  (Credential)=>{
-        try {
-            const  response= await authservices.login(Credential)
-             return response
-        } catch (error) {
+    // const login= async  (Credential)=>{
+    //     try {
+    //         const  response= await authservices.login(Credential)
+    //          return response
+    //     } catch (error) {
             
-        }
-    }
+    //     }
+    // }
+const login = (userData) => {
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+  };
 
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
     const value={
         register,
-        login
-    }
+        login,
+user    }
 
 
     return <Authcontext.Provider value={value}>{children}</Authcontext.Provider>

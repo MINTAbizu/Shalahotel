@@ -65,7 +65,7 @@ const response = await register({
   email: form.email,
   password: form.password,
 });
-console.log("Registration Success:", response.data);
+console.log("Registration Success:", response);
 
       navigate("/login");
     } catch (err) {

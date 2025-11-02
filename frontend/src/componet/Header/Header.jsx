@@ -69,7 +69,7 @@ function Header() {
                  <nav>
         {user ? (
           <>
-            <span>Welcome, {user.name}</span>
+            <span className='color:danger' style={{color:'red'}}>Welcome, {user.name}</span>
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
