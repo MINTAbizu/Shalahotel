@@ -42,8 +42,8 @@ function Home() {
                 </div>
 
                 <div className="btton">
-                 <Link to={'/booking'}>   <button className="btnss  btn-lg ">Book Now</button></Link>
-                  <Link  to={'/menu'} ><button className='btnss btn-lg explo '>Exploree our menu</button> </Link>
+                 <div><Link to={'/booking'}>   <button className="btnss  btn-lg ">Book Now</button></Link></div>
+                 <div> <Link  to={'/menu'} ><button className='btnss btn-lg explo '>Exploree our menu</button> </Link></div>
                 </div>
                 <div className="btton">
                   {/* <button className="btnss  btn-lg ">Book Now</button> */}

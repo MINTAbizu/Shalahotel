@@ -155,14 +155,22 @@
 }
 /* responsive adjustments (keep existing media queries) */
 @media (max-width:767px){
-  .hometitle, .descption { width: calc(100% - 2rem); display:block; margin:0 auto; }
+  .hometitle, .descption {
+     width: calc(100% - 2rem); display:block; margin:0 auto; 
+     text-align: center;
+     justify-content: center;
+     /* padd */
+    }
   .home{ height: 320px; }
-  .btton{
-    margin:0 auto;
-    /* padding: 30px; */
+  /* .btton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  }
-  .servieses{
-    margin-top: 50px;
-  }
+  } */
+   .servieses{
+    margin-top: 40px;
+
+   }
 }
