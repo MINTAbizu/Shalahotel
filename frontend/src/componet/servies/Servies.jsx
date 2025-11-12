@@ -3,7 +3,7 @@ import './servies.css';
 
 function Servies() {
   return (
-    <div className="serviescontiner ">
+    <div className="serviescontiner container py-5  shadow rounded-5 p-4 text-center h-50 bg-light text-dark">
       <div className="row justify-content-center g-4">
         {/* Location Card */}
         <div className="col-12 col-md-4">

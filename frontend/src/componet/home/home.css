@@ -162,15 +162,12 @@
      /* padd */
     }
   .home{ height: 320px; }
-  /* .btton{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+ .btton{
+    margin:0 auto;
+    /* padding: 30px; */
 
-  } */
-   .servieses{
-    margin-top: 40px;
-
-   }
+  }
+  .servieses{
+    margin-top: 50px;
+  }
 }
