@@ -1,11 +1,12 @@
 .serviescard{
     color: white;
-    background-color: var(--furniture-weak);
+    /* background-color: var(--furniture-weak); */
     /* border-radius: 15px; */
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
     
 }
 .location{
@@ -15,7 +16,7 @@
     border: 1px solid  wheat;
     
     /* border-radius: 50%; */
-    background-color: var(--furniture);
+    /* background-color: var(--furniture); */
     /* display: flex; */
     align-items: center;
     justify-content: center;

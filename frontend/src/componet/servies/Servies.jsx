@@ -3,11 +3,11 @@ import './servies.css';
 
 function Servies() {
   return (
-    <div className="serviescontiner container py-5">
+    <div className="serviescontiner container py-5  shadow rounded-5 p-4 text-center h-50 bg-light text-dark">
       <div className="row justify-content-center g-4">
         {/* Location Card */}
         <div className="col-12 col-md-4">
-          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-dark text-light">
+          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-light text-dark">
             <div className="location-icon mb-3">
               <i className="bi bi-geo-alt-fill fs-3 text-primary"></i>
             </div>
@@ -18,7 +18,7 @@ function Servies() {
 
         {/* Working Hours Card */}
         <div className="col-12 col-md-4">
-          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-dark text-light">
+          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-light text-dark">
             <div className="call-icon mb-3">
               <i className="bi bi-clock-fill fs-3 text-primary"></i>
             </div>
@@ -29,7 +29,7 @@ function Servies() {
 
         {/* Premium Quality Card */}
         <div className="col-12 col-md-4">
-          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-dark text-light">
+          <div className="serviescard shadow rounded-5 p-4 text-center h-100 bg-light text-dark">
             <div className="quality-icon mb-3">
               <i className="bi bi-star-fill fs-3 text-primary"></i>
             </div>

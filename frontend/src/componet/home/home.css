@@ -157,4 +157,12 @@
 @media (max-width:767px){
   .hometitle, .descption { width: calc(100% - 2rem); display:block; margin:0 auto; }
   .home{ height: 320px; }
+  .btton{
+    margin:0 auto;
+    /* padding: 30px; */
+
+  }
+  .servieses{
+    margin-top: 50px;
+  }
 }
