@@ -10,7 +10,7 @@ function Home() {
         <div className="home">
             <div className="homecontainer">
                 <div className="hometitle">
-                    <h1>Welcome to Shala Hotel</h1>
+                    <h1>Welcome to ሻላ Hotel</h1>
                     <p>Your comfort is our priority</p>
                 </div>
                 <div className="carosel">
@@ -31,7 +31,7 @@ function Home() {
         
                       centerMode={false}
                        >
-                          <h1>Welcome to Shala Hotel</h1>
+                          <h1>Welcome to Shala ሻላ Hotel</h1>
                     <h1>Your comfort is our priority</h1>
                     </Carousel>
                      

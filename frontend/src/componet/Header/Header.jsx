@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStateValue } from '../../Staateprovider/Stateprovider'
-// import '../Header/Header.css'
+import '../Header/Header.css'
 
 
 import { Link } from 'react-router-dom'
@@ -25,8 +25,9 @@ function Header() {
               height="32"
               className="me-2"
             />
-            <span className="rounded logotitile">  <small>Shala Hotel</small>  </span>
+            
           </a>
+          <span className="rounded logotitile">  <large>ሻላ</large>  </span>
 
           <button
             className="navbar-toggler"
