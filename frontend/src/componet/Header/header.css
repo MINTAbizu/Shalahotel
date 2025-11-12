@@ -3,8 +3,11 @@ header{
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #ffffff;
+background-color: #0d6efd;
+  color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: bolder;
     
 }
 .basketcount{
@@ -12,4 +15,10 @@ header{
     color: red;
     font-size: 18px;
     
+}
+
+.navbar-nav li a:hover{
+    background-color: #0d6efd;
+  color: white;
+
 }
