@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import Manu from '../manu/Manu'; // Menu Card Component
-const API_BASE = import.meta.env.VITE_API_URL
+import Manu from '../manu/Manu';
+
+const API_BASE = import.meta.env.VITE_API_URL;
+
 export default function MenuList() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const res = await fetch(`${API_BASE}/api/menu/`); // GET all items
-      
-    
-   
-      .then((res) => res.json())
-      .then(setItems)
-      
-      .catch(console.error);
+    const loadMenu = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/menu`);
+        const data = await res.json();
+        setItems(data);
+      } catch (err) {
+        console.error("Error loading menu:", err);
+      }
+    };
+
+    loadMenu();
   }, []);
-  console.log(items)
 
   return (
     <div className="container py-4">
