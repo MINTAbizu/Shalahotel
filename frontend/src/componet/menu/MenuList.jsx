@@ -5,7 +5,9 @@ export default function MenuList() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/menu/post
+    const res = await fetch(`${API_BASE}/api/menu/post`); // GET all items
+      
+    
    
       .then((res) => res.json())
       .then(setItems)
