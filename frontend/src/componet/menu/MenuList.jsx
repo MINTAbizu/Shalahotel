@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Manu from '../manu/Manu'; // Menu Card Component
-
+const API_BASE = import.meta.env.VITE_API_URL
 export default function MenuList() {
   const [items, setItems] = useState([]);
 
