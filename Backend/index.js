@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",        // local development
-      "https://shala22.netlify.app"   // your deployed frontend (NO trailing slash!)
+      "https://shalhotel.netlify.app"   // your deployed frontend (NO trailing slash!)
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
